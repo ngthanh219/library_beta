@@ -1,0 +1,33 @@
+i.fa.fa-pencil {
+    color: #a1a660;
+    padding: 0 3px;
+}
+i.fa.fa-trash {
+    color: red;
+    padding: 0 3px;
+}
+
+i.fa.fa-pencil:hover{
+	font-size: 20px;
+}
+i.fa.fa-trash:hover{
+	font-size: 20px;
+}
+i.fa.fa-eye:hover{
+	font-size: 20px;
+}
+.error {
+    color: red;
+    font-size: 17px;
+    padding-top: 10px;
+}
+.waiting-order{
+    color: #624490;
+    font-weight: bold;
+    font-size: 18px;
+}
+.success-order{
+    color: #3cc547;
+    font-weight: bold;
+    font-size: 18px;
+}

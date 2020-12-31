@@ -1,0 +1,15 @@
+table.cart-table-general {
+    width: 100%;
+}
+
+th.col-first-table {
+    width: 14%;
+}
+
+th.col-second-table {
+    width: 43%;
+}
+
+th.col-third-table {
+    width: 5%;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "book-client-lte",
+  "homepage": "https://github.com/ngthanh219/book-client-lte",
+  "_release": "0f97391455",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0f973914555b2ebe2e869c0c45a2ba908770acf2"
+  },
+  "_source": "https://github.com/ngthanh219/book-client-lte.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/ngthanh219/book-client-lte.git",
+  "_direct": true
+}
