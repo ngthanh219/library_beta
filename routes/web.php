@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
+
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resources([
+        'user' => 'UserController'
+    ]);
+    Route::get('search-user', 'UserController@search')->name('search-user');
 });
