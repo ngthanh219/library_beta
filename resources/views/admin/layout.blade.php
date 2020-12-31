@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Trang chủ</title>
+    <title>{{ trans('admin.admin') }}</title>
     <link rel="icon" type="image/png" href="assets/dist/img/logo1.png">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet"
@@ -26,6 +26,8 @@
     <link rel="stylesheet"
         href="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/author.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/admin.css') }}">
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini" style="font-size: 16px;">
@@ -99,14 +101,20 @@
                 </div>
                 <ul class="sidebar-menu" data-widget="tree">
                     <li>
-                        <a href="">
+                        <a href="#">
                             <i class="fa fa-home"></i> <span>{{ trans('user.home') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{ route('user.index') }}">
                             <i class="fa fa-user"></i>
                             <span>{{ trans('user.users_manager') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('author.index') }}">
+                            <i class="fa fa-address-book"></i>
+                            <span>{{ trans('admin.author') }}</span>
                         </a>
                     </li>
                 </ul>
