@@ -52,11 +52,11 @@
                                 <tbody>
                                     <tr>
                                         <th>{{ trans('admin.author_name') }}</th>
-                                        <th>{{ trans('admin.image') }}</th>
+                                        <th>{{ trans('admin.avatar') }}</th>
                                         <th>{{ trans('admin.description') }}</th>
                                         <th>{{ trans('admin.date_of_born') }}</th>
                                         <th>{{ trans('admin.date_of_death') }}</th>
-                                        <th>{{ trans('admin.action') }}</th>
+                                        <th>{{ trans('admin.actions') }}</th>
                                     </tr>
                                     @foreach ($authors as $author)
                                         <tr>

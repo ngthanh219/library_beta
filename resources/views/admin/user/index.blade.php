@@ -12,8 +12,7 @@
                 <li>{{ trans('user.menu') }}</li>
             </ol>
             @if (session()->has('infoMessage'))
-                <div class="col-md-3 infoMessage"
-                    style="position: absolute;z-index: 9999999;right: 0;top: 15px;opacity: 0.9;width: 16%;">
+                <div class="col-md-3 infoMessage">
                     <div class="box box-warning box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">
@@ -44,7 +43,7 @@
                         <div class="box-header">
                             <h3 class="box-title">{{ trans('user.list') }}</h3>
                             <div class="box-tools">
-                                <div class="input-group input-group-sm hidden-xs" style="width: 300px;">
+                                <div class="input-group input-group-sm hidden-xs">
                                     <input type="text" onkeyup="showResult(this.value)" name="search"
                                         class="form-control pull-right" placeholder="{{ trans('user.filter') }}"
                                         autocomplete="off">
@@ -68,11 +67,12 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
-                                            <td>{{ $user->role_id }}</td>
+                                            <td>{{ $user->role_id == 0 ? 'Admin' : 'User' }}</td>
                                             <td>{{ $user->status == 0 ? trans('user.on') : trans('user.off') }}</td>
                                             <td style="display: flex;justify-content: center;">
-                                                <a href="{{ route('user.edit', $user->id)}}"><i class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('user.destroy', $user->id)}}" method="POST"
+                                                <a href="{{ route('user.edit', $user->id) }}"><i
+                                                        class="fa fa-pencil"></i></a>
+                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST"
                                                     onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
                                                     @method('DELETE')
                                                     @csrf
@@ -94,5 +94,6 @@
             </div>
         </section>
     </div>
-    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search_user.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search_user.js') }}"
+        defer></script>
 @endsection

@@ -3,6 +3,7 @@
 return [
     'home' => 'Home',
     'admin' => 'Admin',
+    'avatar' => 'Avatar',
     'author' => 'Author',
     'author_name' => 'Author name',
     'name' => 'Name',
@@ -21,7 +22,7 @@ return [
     'return' => 'Return',
     'author_create' => 'Author Create',
     'author_form' => 'Author From',
-    'action' => 'Action',
+    'actions' => 'Actions',
     'unknow' => 'Unknow',
     'notifi' => 'Notification'
 ];
