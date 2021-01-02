@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Http\Requests\CreateUserRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -132,7 +132,7 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $users = User::where('name','LIKE','%'.$request->name.'%')->orderBy('id', 'DESC')->get();
+        $users = User::where('name', 'LIKE', '%' . $request->name . '%')->orderBy('id', 'DESC')->get();
 
         return view('admin.user.search', compact('users'));
     }
