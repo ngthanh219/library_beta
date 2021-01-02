@@ -18,8 +18,11 @@ Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('publisher/export', 'PublisherController@export')->name('publisher.export');
+    Route::get('search-user', 'UserController@search')->name('search-user');
     Route::resource('user', 'UserController');
     Route::resource('author', 'AuthorController');
-    Route::get('search-user', 'UserController@search')->name('search-user');
+    Route::resource('publisher', 'PublisherController');
 });
+

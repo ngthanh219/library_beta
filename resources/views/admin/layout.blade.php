@@ -117,6 +117,12 @@
                             <span>{{ trans('admin.author') }}</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('publisher.index') }}">
+                            <i class="fa fa-building"></i>
+                            <span>{{ trans('admin.publisher') }}</span>
+                        </a>
+                    </li>
                 </ul>
             </section>
         </aside>
@@ -136,8 +142,8 @@
     </div>
 
     <script src="{{ asset('bower_components/admin-lte/bower_components/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}">
-    </script>
+    {{-- <script src="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}">
+    </script> --}}
     <script src="{{ asset('bower_components/admin-lte/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}">
     </script>
