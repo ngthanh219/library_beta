@@ -2,14 +2,15 @@
 @section('index')
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
-            <h1>{{ trans('admin.authors_manager') }}</h1>
+            <h1>{{ trans('category.categories_manager') }}</h1>
             <div class="timeline-footer" style="padding: 10px 0px">
-                <a href="{{ route('author.create') }}" class="btn btn-primary btn" style="margin-right: 5px;">
-                    <i class="fa fa-plus-square" style="margin-right: 5px;"></i> {{ trans('admin.add_submit_button') }}
+                <a href="{{ route('category.create') }}" class="btn btn-primary btn" style="margin-right: 5px;">
+                    <i class="fa fa-plus-square" style="margin-right: 5px;"></i>
+                    {{ trans('category.add_submit_button') }}
                 </a>
             </div>
             <ol class="breadcrumb">
-                <li>{{ trans('admin.author') }}</li>
+                <li>{{ trans('category.category') }}</li>
             </ol>
             @if (session()->has('infoMessage'))
                 <div class="infoMessage">
@@ -17,7 +18,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">
                                 <i class="fa fa-bell-o"></i>
-                                {{ trans('admin.notifi') }}
+                                {{ trans('category.notifi') }}
                             </h3>
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -37,12 +38,12 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">{{ trans('admin.author_list') }}</h3>
+                            <h3 class="box-title">{{ trans('category.category_list') }}</h3>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 300px;">
                                     <input type="text" onkeyup="showResult(this.value)" name="search"
-                                        class="form-control pull-right" placeholder="{{ trans('admin.author_filter') }}"
-                                        autocomplete="off">
+                                        class="form-control pull-right"
+                                        placeholder="{{ trans('category.category_search') }}" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -51,34 +52,23 @@
                             <table class="table table-hover text-center">
                                 <tbody>
                                     <tr>
-                                        <th>{{ trans('admin.author_name') }}</th>
-                                        <th>{{ trans('admin.avatar') }}</th>
-                                        <th>{{ trans('admin.description') }}</th>
-                                        <th>{{ trans('admin.date_of_born') }}</th>
-                                        <th>{{ trans('admin.date_of_death') }}</th>
-                                        <th>{{ trans('admin.actions') }}</th>
+                                        <th>{{ trans('category.category_name') }}</th>
+                                        <th>{{ trans('category.actions') }}</th>
                                     </tr>
-                                    @foreach ($authors as $author)
+                                    @foreach ($categories as $category)
                                         <tr>
-                                            <td>{{ $author->name }}</td>
                                             <td>
-                                                @if ($author->image)
-                                                    <img class="image-avatar" src="{{ asset('upload/author/' . $author->image) }}"
-                                                        title="{{ trans('admin.author') }}: {{ $author->name }}">
-                                                @else
-                                                    {{ trans('admin.unknow') }}
-                                                @endif
-                                            </td>
-                                            <td>{{ $author->description ? $author->description : trans('admin.unknow') }}
-                                            </td>
-                                            <td>{{ $author->date_of_born ? $author->date_of_born : trans('admin.unknow') }}
-                                            </td>
-                                            <td>{{ $author->date_of_death ? $author->date_of_death : trans('admin.unknow') }}
+                                                <b>{{ $category->name }}</b>
+                                                @foreach ($category['children'] as $item)
+                                                    <table class="table table-hover text-center">
+                                                        
+                                                    </table>
+                                                @endforeach
                                             </td>
                                             <td style="display: flex;justify-content: center;">
-                                                <a href="{{ route('author.edit', $author->id) }}"><i
+                                                <a href="{{ route('category.edit', $category->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('author.destroy', $author->id) }}" method="POST"
+                                                <form action="{{ route('category.destroy', $category->id) }}" method="POST"
                                                     onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
                                                     @method('DELETE')
                                                     @csrf
@@ -100,6 +90,6 @@
             </div>
         </section>
     </div>
-    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search_admin.js') }}"
-        defer></script>
+    <script type="text/javascript"
+        src="{{ asset('bower_components/category-lte/dist/js/component/search/search_category.js') }}" defer></script>
 @endsection

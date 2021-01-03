@@ -26,4 +26,5 @@ return [
     'unknow' => 'Unknow',
     'notifi' => 'Notification',
     'publisher' => 'Publisher',
+    'category' => 'Category',
 ];

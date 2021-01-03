@@ -57,7 +57,7 @@
                                 <tbody>
                                     <tr>
                                         <th>{{ trans('publisher.publisher_name') }}</th>
-                                        <th>{{ trans('publisher.image') }}</th>
+                                        <th>{{ trans('publisher.logo') }}</th>
                                         <th>{{ trans('publisher.email') }}</th>
                                         <th>{{ trans('publisher.phone') }}</th>
                                         <th>{{ trans('publisher.address') }}</th>
