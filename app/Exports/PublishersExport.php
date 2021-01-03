@@ -14,7 +14,9 @@ class PublishersExport implements FromCollection, WithDrawings
     */
     public function collection()
     {
-        return Publisher::all();
+        $publisher = Publisher::all(['name', 'email', 'phone', 'address', 'description']);
+        
+        return $publisher;
     }
 
     public function drawings()
