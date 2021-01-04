@@ -27,6 +27,7 @@
         href="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <script src="{{ asset('bower_components/admin-lte/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini" style="font-size: 16px;">
@@ -126,6 +127,12 @@
                         <a href="{{ route('category.index') }}">
                             <i class="fa fa-tags"></i>
                             <span>{{ trans('admin.category') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('book.index') }}">
+                            <i class="fa fa-book"></i>
+                            <span>{{ trans('book.books_manager') }}</span>
                         </a>
                     </li>
                 </ul>
