@@ -101,7 +101,12 @@ class CategoryController extends Controller
         ]);
         $parent = $category->load('parent');
         if ($result) {
-            return redirect()->route('category.show', $parent['parent']->id)->with('infoMessage',
+            if (isset($parent->parent)) {
+                return redirect()->route('category.show', $parent['parent']->id)->with('infoMessage',
+                    trans('message.category_update_success'));
+            }
+
+            return redirect()->route('category.index')->with('infoMessage',
                 trans('message.category_update_success'));
         }
 
