@@ -3,6 +3,7 @@
 return [
     'category' => 'Category',
     'category_name' => 'Name',
+    'list' => 'List Category:',
     'name' => 'Name',
     'phone' => 'Phone',
     'email' => 'Email',

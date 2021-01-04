@@ -132,7 +132,7 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $users = User::where('name', 'LIKE', '%' . $request->name . '%')->orderBy('id', 'DESC')->get();
+        $users = User::where('name', 'LIKE', '%' . $request->key . '%')->orderBy('id', 'DESC')->get();
 
         return view('admin.user.search', compact('users'));
     }
