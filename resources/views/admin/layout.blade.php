@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/dist/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/author.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/admin.css') }}">
+    <script src="{{ asset('bower_components/admin-lte/bower_components/jquery/dist/jquery.min.js') }}"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini" style="font-size: 16px;">
@@ -146,14 +147,12 @@
 
         <div class="control-sidebar-bg"></div>
     </div>
-
     <script src="{{ asset('bower_components/admin-lte/bower_components/ckeditor/ckeditor.js') }}"></script>
-    {{-- <script src="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}">
-    </script> --}}
-    <script src="{{ asset('bower_components/admin-lte/bower_components/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('bower_components/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}" defer>
+    <script src="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}">
     </script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/select2/dist/js/select2.full.min.js') }}">
+    </script>
+    <script src="{{ asset('bower_components/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}">
     </script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}">
     </script>

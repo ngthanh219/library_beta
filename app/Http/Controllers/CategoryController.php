@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('parent_id', 0)->get()->load('children');
+        $categories = Category::where('parent_id', 0)->get();
 
         return view('admin.category.index', compact('categories'));
     }
@@ -61,7 +61,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -72,7 +72,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        
+        return view('admin.category.edit', compact('category'));
     }
 
     /**

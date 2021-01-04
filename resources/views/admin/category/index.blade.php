@@ -59,13 +59,10 @@
                                         <tr>
                                             <td>
                                                 <b>{{ $category->name }}</b>
-                                                @foreach ($category['children'] as $item)
-                                                    <table class="table table-hover text-center">
-                                                        
-                                                    </table>
-                                                @endforeach
                                             </td>
                                             <td style="display: flex;justify-content: center;">
+                                                <a href="{{ route('category.show', $category->id) }}"><i
+                                                        class="fa fa-eye"></i></a>
                                                 <a href="{{ route('category.edit', $category->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
                                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST"
