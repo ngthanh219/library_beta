@@ -2,14 +2,14 @@
 @section('index')
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
-            <h1>{{ trans('user.users_manager') }}</h1>
+            <h1>{{ trans('category.categories_manager') }}</h1>
             <div class="timeline-footer general">
-                <a href="{{ route('user.create') }}" class="btn btn-primary btn general">
-                    <i class="fa fa-plus-square general"></i> {{ trans('user.add_submit_button') }}
+                <a href="{{ route('category.create') }}" class="btn btn-primary btn general">
+                    <i class="fa fa-plus-square general"></i> {{ trans('category.add_submit_button') }}
                 </a>
             </div>
             <ol class="breadcrumb">
-                <li>{{ trans('user.menu') }}</li>
+                <li>{{ trans('category.category') }}</li>
             </ol>
             @if (session()->has('infoMessage'))
                 <div class="col-md-3 infoMessage">
@@ -17,7 +17,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">
                                 <i class="fa fa-bell-o"></i>
-                                {{ trans('user.notifi') }}
+                                {{ trans('category.notifi') }}
                             </h3>
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -37,12 +37,11 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">{{ trans('user.list') }}</h3>
+                            <h3 class="box-title">{{ trans('category.list') }} {{ $category->name }}</h3>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs">
-                                    <input type="text" name="search-user" id="search"
-                                        class="form-control pull-right" placeholder="{{ trans('user.filter') }}"
-                                        autocomplete="off">
+                                    <input type="text" name="search-category" id="search" class="form-control pull-right"
+                                        placeholder="{{ trans('category.category_search') }}" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -51,25 +50,18 @@
                             <table class="table table-hover text-center">
                                 <tbody>
                                     <tr>
-                                        <th>{{ trans('user.name') }}</th>
-                                        <th>{{ trans('user.email') }}</th>
-                                        <th>{{ trans('user.phone') }}</th>
-                                        <th>{{ trans('user.role_id') }}</th>
-                                        <th>{{ trans('user.status') }}</th>
-                                        <th>{{ trans('user.actions') }}</th>
+                                        <th>{{ trans('category.name') }}</th>
+                                        <th>{{ trans('category.actions') }}</th>
                                     </tr>
-                                    @foreach ($users as $user)
+                                    @foreach ($category['children'] as $children)
                                         <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->phone }}</td>
-                                            <td>{{ $user->role_id == 0 ? 'Admin' : 'User' }}</td>
-                                            <td>{{ $user->status == 0 ? trans('user.on') : trans('user.off') }}</td>
+                                            <td>{{ $children->name }}</td>
                                             <td class="td general">
-                                                <a href="{{ route('user.edit', $user->id) }}"><i
+                                                <a href="{{ route('category.edit', $children->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="delete-form general">
+                                                <form action="{{ route('category.destroy', $children    ->id) }}" method="POST"
+                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                                                    class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit">
@@ -90,8 +82,8 @@
             </div>
         </section>
     </div>
-    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search.js') }}"
-        defer></script>
+    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search.js') }}" defer>
+    </script>
     <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/general.js') }}" defer>
     </script>
 @endsection

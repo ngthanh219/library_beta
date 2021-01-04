@@ -19,9 +19,10 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal" action="{{ route('category.store') }}" method="post"
+                                <form class="form-horizontal" action="{{ route('category.update', $category->id) }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
                                     <div class="form-group">
                                         <label for="inputName"
                                             class="col-sm-2 control-label">{{ trans('category.name') }}</label>
@@ -39,16 +40,21 @@
                                             <select class="form-control select2" style="width: 100%" id="sel1"
                                                 name="parent_id">
                                                 <option value="0">-- Category --</option>
-                                                {{-- @foreach ($category as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                @endforeach --}}
+                                                @foreach ($categories as $item)
+                                                    @if ($item->id == $category->parent_id))
+                                                        <option value="{{ $item->id }}" selected>{{ $item->name }}
+                                                        </option>
+                                                    @else
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endif
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" id="add"
-                                                class="btn btn-danger">{{ trans('category.add_submit_button') }}</button>
+                                                class="btn btn-danger">{{ trans('category.edit_submit_button') }}</button>
                                             <a href="{{ route('category.index') }}"
                                                 class="btn btn-info quaylai">{{ trans('category.return') }}</a>
                                         </div>
