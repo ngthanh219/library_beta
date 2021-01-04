@@ -21,13 +21,13 @@
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->role_id }}</td>
                         <td>{{ $user->status == 0 ? trans('user.on') : trans('user.off') }}</td>
-                        <td style="display: flex;justify-content: center;">
+                        <td class="td general">
                             <a href="{{ route('user.edit', $user->id) }}"><i class="fa fa-pencil"></i></a>
                             <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="delete-form general">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" style="background: none;border: none;">
+                                <button type="submit">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </form>

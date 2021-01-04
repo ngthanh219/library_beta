@@ -3,9 +3,9 @@
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
             <h1>{{ trans('user.users_manager') }}</h1>
-            <div class="timeline-footer" style="padding: 10px 0px">
-                <a href="{{ route('user.create') }}" class="btn btn-primary btn" style="margin-right: 5px;">
-                    <i class="fa fa-plus-square" style="margin-right: 5px;"></i> {{ trans('user.add_submit_button') }}
+            <div class="timeline-footer general">
+                <a href="{{ route('user.create') }}" class="btn btn-primary btn general">
+                    <i class="fa fa-plus-square general"></i> {{ trans('user.add_submit_button') }}
                 </a>
             </div>
             <ol class="breadcrumb">
@@ -25,15 +25,11 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="box-body" style="">
+                        <div class="box-body">
                             {{ session()->get('infoMessage') }}
                         </div>
                     </div>
                 </div>
-                <script>
-                    $('.infoMessage').delay(1500).slideUp();
-
-                </script>
             @endif
         </section>
         <section class="content">
@@ -44,7 +40,7 @@
                             <h3 class="box-title">{{ trans('user.list') }}</h3>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs">
-                                    <input type="text" onkeyup="showResult(this.value)" name="search"
+                                    <input type="text" name="search-user" id="search"
                                         class="form-control pull-right" placeholder="{{ trans('user.filter') }}"
                                         autocomplete="off">
                                 </div>
@@ -69,14 +65,14 @@
                                             <td>{{ $user->phone }}</td>
                                             <td>{{ $user->role_id == 0 ? 'Admin' : 'User' }}</td>
                                             <td>{{ $user->status == 0 ? trans('user.on') : trans('user.off') }}</td>
-                                            <td style="display: flex;justify-content: center;">
+                                            <td class="td general">
                                                 <a href="{{ route('user.edit', $user->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
                                                 <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
+                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit" style="background: none;border: none;">
+                                                    <button type="submit">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -94,6 +90,8 @@
             </div>
         </section>
     </div>
-    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search_user.js') }}"
+    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search.js') }}"
         defer></script>
+    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/general.js') }}" defer>
+    </script>
 @endsection
