@@ -3,17 +3,16 @@
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
             <h1>{{ trans('category.categories_manager') }}</h1>
-            <div class="timeline-footer" style="padding: 10px 0px">
-                <a href="{{ route('category.create') }}" class="btn btn-primary btn" style="margin-right: 5px;">
-                    <i class="fa fa-plus-square" style="margin-right: 5px;"></i>
-                    {{ trans('category.add_submit_button') }}
+            <div class="timeline-footer general">
+                <a href="{{ route('category.create') }}" class="btn btn-primary btn general">
+                    <i class="fa fa-plus-square general"></i> {{ trans('category.add_submit_button') }}
                 </a>
             </div>
             <ol class="breadcrumb">
                 <li>{{ trans('category.category') }}</li>
             </ol>
             @if (session()->has('infoMessage'))
-                <div class="infoMessage">
+                <div class="col-md-3 infoMessage">
                     <div class="box box-warning box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">
@@ -26,7 +25,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="box-body" style="">
+                        <div class="box-body">
                             {{ session()->get('infoMessage') }}
                         </div>
                     </div>
@@ -38,11 +37,10 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">{{ trans('category.category_list') }}</h3>
+                            <h3 class="box-title">{{ trans('category.list') }} {{ $category->name }}</h3>
                             <div class="box-tools">
-                                <div class="input-group input-group-sm hidden-xs" style="width: 300px;">
-                                    <input type="text" onkeyup="showResult(this.value)" name="search"
-                                        class="form-control pull-right"
+                                <div class="input-group input-group-sm hidden-xs">
+                                    <input type="text" name="search-category" id="search" class="form-control pull-right"
                                         placeholder="{{ trans('category.category_search') }}" autocomplete="off">
                                 </div>
                             </div>
@@ -52,24 +50,21 @@
                             <table class="table table-hover text-center">
                                 <tbody>
                                     <tr>
-                                        <th>{{ trans('category.category_name') }}</th>
+                                        <th>{{ trans('category.name') }}</th>
                                         <th>{{ trans('category.actions') }}</th>
                                     </tr>
-                                    @foreach ($categories as $category)
+                                    @foreach ($category['children'] as $children)
                                         <tr>
-                                            <td>
-                                                <b>{{ $category->name }}</b>
-                                            </td>
-                                            <td style="display: flex;justify-content: center;">
-                                                <a href="{{ route('category.show', $category->id) }}"><i
-                                                        class="fa fa-eye"></i></a>
-                                                <a href="{{ route('category.edit', $category->id) }}"><i
+                                            <td>{{ $children->name }}</td>
+                                            <td class="td general">
+                                                <a href="{{ route('category.edit', $children->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('category.destroy', $category->id) }}" method="POST"
-                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
+                                                <form action="{{ route('category.destroy', $children    ->id) }}" method="POST"
+                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                                                    class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit" style="background: none;border: none;">
+                                                    <button type="submit">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -87,6 +82,8 @@
             </div>
         </section>
     </div>
-    <script type="text/javascript"
-        src="{{ asset('bower_components/category-lte/dist/js/component/search/search_category.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search.js') }}" defer>
+    </script>
+    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/general.js') }}" defer>
+    </script>
 @endsection

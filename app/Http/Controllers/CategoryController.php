@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('parent_id', 0)->get()->load('children');
+        $categories = Category::where('parent_id', 0)->get();
 
         return view('admin.category.index', compact('categories'));
     }
@@ -61,7 +61,14 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        if ($category->parent_id == 0) {
+            $category->load('children');
+
+            return view('admin.category.show', compact('category'));
+        }
+
+        abort(404);
     }
 
     /**
@@ -72,7 +79,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $categories = Category::where('parent_id', 0)->with('children')->get();
+
+        return view('admin.category.edit', compact('category', 'categories'));
     }
 
     /**
@@ -84,7 +94,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $result = $category->update([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id,
+        ]);
+        $parent = $category->load('parent');
+        if ($result) {
+            return redirect()->route('category.show', $parent['parent']->id)->with('infoMessage',
+                trans('message.category_update_success'));
+        }
+
+        return redirect()->back()->with('infoMessage',
+            trans('message.category_update__fail'));
     }
 
     /**
@@ -95,6 +117,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $result = $category->delete();
+        if ($result) {
+            return redirect()->back()->with('infoMessage',
+                trans('message.category_delete_success'));
+        }
+
+        return redirect()->route('category.index')->with('infoMessage',
+            trans('message.category_delete__fail'));
     }
 }

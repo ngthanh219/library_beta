@@ -35,7 +35,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Select list</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" id="sel1" name="parent_id">
+                                            <select class="form-control select2" style="width: 100%" id="sel1"
+                                                name="parent_id">
                                                 <option value="0">-- Category --</option>
                                                 @foreach ($categoryParents as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -59,4 +60,10 @@
             </div>
         </section>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
+    </script>
 @endsection

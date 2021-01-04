@@ -57,15 +57,19 @@
                         <div class="box-body">
                             <strong><i class="fa fa-tags margin-r-5"></i> Category</strong>
                             <p class="text-muted">
-                                <span class="label label-danger">{{ $book->category_id }}</span>
+                                <span class="label label-danger">
+                                    @foreach ($book->categories as $category)
+                                        {{ $category->name }}
+                                    @endforeach
+                                </span>
                             </p>
                             <hr>
                             <strong><i class="fa fa-address-book margin-r-5"></i> Author</strong>
-                            <p class="text-muted">{{ $book->author_id }}</p>
+                            <p class="text-muted">{{ $book->author->name }}</p>
                             <hr>
                             <strong><i class="fa fa-building margin-r-5"></i> Publisher</strong>
                             <p>
-                                {{ $book->publisher_id }}
+                                {{ $book->publisher->name }}
                             </p>
                             <hr>
                             <strong><i class="fa fa-file-text-o margin-r-5"></i> Description</strong>
