@@ -25,5 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('author', 'AuthorController');
     Route::resource('publisher', 'PublisherController');
     Route::resource('category', 'CategoryController');
+    Route::resource('book', 'BookController');
+    Route::get('search-book', 'BookController@search')->name('search-book');
 });
 
