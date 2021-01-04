@@ -3,9 +3,9 @@
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
             <h1>{{ trans('category.categories_manager') }}</h1>
-            <div class="timeline-footer" style="padding: 10px 0px">
-                <a href="{{ route('category.create') }}" class="btn btn-primary btn" style="margin-right: 5px;">
-                    <i class="fa fa-plus-square" style="margin-right: 5px;"></i>
+            <div class="timeline-footer general">
+                <a href="{{ route('category.create') }}" class="btn btn-primary btn general">
+                    <i class="fa fa-plus-square general"></i>
                     {{ trans('category.add_submit_button') }}
                 </a>
             </div>
@@ -26,7 +26,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="box-body" style="">
+                        <div class="box-body">
                             {{ session()->get('infoMessage') }}
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="box-header">
                             <h3 class="box-title">{{ trans('category.category_list') }}</h3>
                             <div class="box-tools">
-                                <div class="input-group input-group-sm hidden-xs" style="width: 300px;">
+                                <div class="input-group input-group-sm hidden-xs">
                                     <input type="text" onkeyup="showResult(this.value)" name="search"
                                         class="form-control pull-right"
                                         placeholder="{{ trans('category.category_search') }}" autocomplete="off">
@@ -60,16 +60,16 @@
                                             <td>
                                                 <b>{{ $category->name }}</b>
                                             </td>
-                                            <td style="display: flex;justify-content: center;">
+                                            <td class="td general">
                                                 <a href="{{ route('category.show', $category->id) }}"><i
                                                         class="fa fa-eye"></i></a>
                                                 <a href="{{ route('category.edit', $category->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
                                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST"
-                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
-                                                    @method('DELETE')
+                                                    class="delete-form general" id="delete">
                                                     @csrf
-                                                    <button type="submit" style="background: none;border: none;">
+                                                    @method('DELETE')
+                                                    <button type="submit">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>

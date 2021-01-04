@@ -28,4 +28,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('book', 'BookController');
     Route::get('search-book', 'BookController@search')->name('search-book');
 });
-

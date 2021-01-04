@@ -3,20 +3,23 @@
 namespace App\Exports;
 
 use App\Models\Publisher;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
-use Maatwebsite\Excel\Concerns\FromCollection;
 
-class PublishersExport implements FromCollection, WithDrawings 
+class PublishersExport implements FromCollection, WithDrawings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
-        $publisher = Publisher::all(['name', 'email', 'phone', 'address', 'description']);
-        
-        return $publisher;
+        $publishers = Publisher::all(['name', 'email', 'phone', 'address', 'description']);
+        if ($publishers->isEmpty()) {
+            return false;
+        }
+
+        return $publishers;
     }
 
     public function drawings()

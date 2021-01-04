@@ -40,9 +40,8 @@
                             <h3 class="box-title">{{ trans('user.list') }}</h3>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs">
-                                    <input type="text" name="search-user" id="search"
-                                        class="form-control pull-right" placeholder="{{ trans('user.filter') }}"
-                                        autocomplete="off">
+                                    <input type="text" name="search-user" id="search" class="form-control pull-right"
+                                        placeholder="{{ trans('user.filter') }}" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -69,7 +68,8 @@
                                                 <a href="{{ route('user.edit', $user->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
                                                 <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="delete-form general">
+                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                                                    class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit">
@@ -90,8 +90,8 @@
             </div>
         </section>
     </div>
-    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search.js') }}"
-        defer></script>
+    <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/search/search.js') }}" defer>
+    </script>
     <script type="text/javascript" src="{{ asset('bower_components/admin-lte/dist/js/component/general.js') }}" defer>
     </script>
 @endsection

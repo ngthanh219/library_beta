@@ -141,6 +141,12 @@ class PublisherController extends Controller
 
     public function export()
     {
-        return Excel::download(new PublishersExport, 'publishers.xlsx');
+        $item = new PublishersExport;
+        if ($item->collection()) {
+            return Excel::download(new PublishersExport, 'publishers.xlsx');
+        }
+
+        return redirect()->back()->with('infoMessage',
+            trans('message.publisher_no_data'));
     }
 }

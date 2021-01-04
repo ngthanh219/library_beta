@@ -26,7 +26,9 @@
     <link rel="stylesheet"
         href="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <script src="{{ asset('bower_components/admin-lte/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="bower_components/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-sweetalert/dist/sweetalert.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 </head>
 
@@ -152,6 +154,7 @@
 
         <div class="control-sidebar-bg"></div>
     </div>
+    <script type="text/javascript" src="{{ asset('/js/sweet-alert.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}">
     </script>

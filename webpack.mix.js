@@ -13,5 +13,6 @@ const { bindAll } = require('lodash');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/sweet-alert.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .styles('resources/css/all.css', 'public/css/all.css');

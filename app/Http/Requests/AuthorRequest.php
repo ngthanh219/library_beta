@@ -26,8 +26,8 @@ class AuthorRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'description' => 'max:255',
-            'date_of_born' => 'date|before:tomorrow',
-            'date_of_death' => 'date|after:date_of_born',
+            'date_of_born' => 'date|nullable|before:tomorrow',
+            'date_of_death' => 'date|nullable|after:date_of_born',
         ];
     }
 }

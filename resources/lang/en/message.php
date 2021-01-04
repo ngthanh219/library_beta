@@ -12,10 +12,12 @@ return [
     'publisher_update_fail' => 'Publisher failed correction',
     'publisher_delete_success' => 'Publisher successfully deleted',
     'publisher_delete_fail' => 'Failed to delete Publisher',
+    'publisher_no_data' => 'No data',
     'category_create_success' => 'Category successfully created',
     'category_create_fail' => 'Category created failed',
     'category_update_success' => 'Category successful update',
     'category_update_fail' => 'Category failed correction',
     'category_delete_success' => 'Category successfully deleted',
-    'category__delete_fail' => 'Failed to delete category',
+    'category_delete_fail' => 'Failed to delete category',
+    'category_has_children' => 'Category has children! You should delete children before',
 ];
