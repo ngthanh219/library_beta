@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/cate_popup.js": "/js/cate_popup.js",
+    "/js/cate_popup_form.js": "/js/cate_popup_form.js",
     "/js/editor.js": "/js/editor.js",
     "/js/select2.js": "/js/select2.js",
     "/js/sweet-alert.js": "/js/sweet-alert.js",

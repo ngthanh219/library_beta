@@ -18,6 +18,10 @@ i.fa.fa-eye {
     margin-right: 10px;
 }
 
+.form-control.select2 {
+    width: 100%;
+}
+
 .form-control.select2.general {
     width: 300px;
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -41,17 +41,33 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $category = new Category;
-        $result = $category->create([
-            'name' => $request->name,
-            'parent_id' => $request->parent_id,
-        ]);
-        if ($result) {
-            return redirect()->route('category.index')->with('infoMessage',
-                trans('message.category_create_success'));
-        }
+        if ($request->ajax()) {
+            $result_parent = $category->create([
+                'name' => $request->parent_name,
+                'parent_id' => 0,
+            ]);
+            $result_child = $category->create([
+                'name' => $request->child_name,
+                'parent_id' => $result_parent['id'],
+            ]);
 
-        return redirect()->route('category.index')->with('infoMessage',
-            trans('message.category_create_fail'));
+            return response()->json([
+                'dataParent' => $result_parent,
+                'dataChild' => $result_child,
+            ]);
+        } else {
+            $result = $category->create([
+                'name' => $request->name,
+                'parent_id' => $request->parent_id,
+            ]);
+            if ($result) {
+                return redirect()->route('category.index')->with('infoMessage',
+                    trans('message.category_create_success'));
+            }
+
+            return redirect()->route('category.index')->with('infoMessage',
+                trans('message.category_create_fail'));
+        }
     }
 
     /**

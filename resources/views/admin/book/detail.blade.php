@@ -12,7 +12,7 @@
                 <div class="col-md-3">
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            @if ($book->image = '')
+                            @if ($book->image != '')
                                 <img class="profile-user-img img-responsive img-circle"
                                     src="{{ asset('upload/book/' . $book->image) }}"
                                     title="{{ trans('book.book') }}: {{ $book->name }}">

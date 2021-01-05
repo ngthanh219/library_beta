@@ -24,10 +24,11 @@ class AuthorRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('author');
+
         return [
             'name' => [
-                'required
-                |max:255|
+                'max:255|
                 required', Rule::unique('authors')->ignore($id),
             ],
             'description' => 'max:255',

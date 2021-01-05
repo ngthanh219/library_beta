@@ -27,4 +27,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('category', 'CategoryController');
     Route::resource('book', 'BookController');
     Route::get('search-book', 'BookController@search')->name('search-book');
+    Route::get('category-popup', 'BookController@catePopup')->name('category-popup');
 });

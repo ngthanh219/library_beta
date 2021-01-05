@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CreateBookRequest extends FormRequest
+class BookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +24,13 @@ class CreateBookRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('book');
+
         return [
-            'name' => 'required|min:5',
+            'name' => [
+                'min:5|
+                required', Rule::unique('authors')->ignore($id),
+            ],
             'image' => 'image',
             'description' => 'max: 1000',
             'category_id' => 'required|array',
