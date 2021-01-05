@@ -12,29 +12,43 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
+        // $data = [
+        //     [
+        //         'name' => 'Nguyễn Tiến Thành',
+        //         'email' => 'nguyenthanh@gmail.com',
+        //         'password' => bcrypt('123456'),
+        //         'address' => 'Hà Đông',
+        //         'phone' => '0334736187',
+        //         'role_id' => 0,
+        //         'times' => 0,
+        //         'status' => 0,
+        //     ],
+        //     [
+        //         'name' => 'Bùi Quang Anh',
+        //         'email' => 'quangsoi99@gmail.com',
+        //         'password' => bcrypt('123456'),
+        //         'address' => 'Long Biên',
+        //         'phone' => 0,
+        //         'role_id' => 0,
+        //         'times' => 0,
+        //         'status' => 0,
+        //     ],
+        // ];
         $data = [
             [
-                'name' => 'Nguyễn Tiến Thành',
-                'email' => 'nguyenthanh@gmail.com',
-                'password' => bcrypt('123456'),
-                'address' => 'Hà Đông',
-                'phone' => '0334736187',
-                'role_id' => 0,
-                'times' => 0,
-                'status' => 0,
+                'name' => 'user.create',
+                'description' => 'Thêm mới người dùng'
             ],
             [
-                'name' => 'Bùi Quang Anh',
-                'email' => 'quangsoi99@gmail.com',
-                'password' => bcrypt('123456'),
-                'address' => 'Long Biên',
-                'phone' => 0,
-                'role_id' => 0,
-                'times' => 0,
-                'status' => 0,
+                'name' => 'user.edit',
+                'description' => 'Chỉnh sửa người dùng'
+            ],
+            [
+                'name' => 'user.destroy',
+                'description' => 'Xóa người dùng'
             ],
         ];
 
-        \App\Models\User::insert($data);
+        \App\Models\Permission::insert($data);
     }
 }
