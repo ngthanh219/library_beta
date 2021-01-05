@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Author;
 use App\Models\Publisher;
 use App\Models\Book;
-use App\Http\Requests\CreateBookRequest;
+use App\Http\Requests\BookRequest;
 
 class BookController extends Controller
 {
@@ -31,11 +31,10 @@ class BookController extends Controller
     public function create()
     {
         $categories = Category::where('parent_id', '<>' ,'0')->get();
-        $categoryParents = Category::where('parent_id', 0)->get();
         $authors = Author::all();
         $publishers = Publisher::all();
 
-        return view('admin.book.create', compact('categories', 'categoryParents', 'authors', 'publishers'));
+        return view('admin.book.create', compact('categories', 'authors', 'publishers'));
     }
 
     /**
@@ -44,7 +43,7 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateBookRequest $request)
+    public function store(BookRequest $request)
     {
         $data = $request->all();
         $data['in_stock'] = $data['total'];
@@ -91,7 +90,7 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::with('books')->get();
+        $categories = Category::with('books')->where('parent_id', '<>' ,'0')->get();
         $authors = Author::with('books')->get();
         $publishers = Publisher::with('books')->get();
         $book = Book::with('author', 'publisher', 'categories')->findOrFail($id);
@@ -106,7 +105,7 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateBookRequest $request, $id)
+    public function update(BookRequest $request, $id)
     {
         $book = Book::findOrFail($id);
         $data = $request->all();
@@ -145,5 +144,12 @@ class BookController extends Controller
         $books = Book::where('name', 'LIKE', '%' . $request->key . '%',)->orderBy('id', 'DESC')->get();
 
         return view('admin.book.search', compact('books'));
+    }
+
+    public function catePopup()
+    {
+        $categoryParents = Category::where('parent_id', 0)->get();
+
+        return view('admin.book.category_popup', compact('categoryParents'));
     }
 }

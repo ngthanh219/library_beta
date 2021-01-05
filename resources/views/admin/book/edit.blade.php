@@ -167,7 +167,9 @@
                 </div>
             </div>
         </section>
+        <div class="cafe-f" id="cate-f"></div>
     </div>
+    <script src="{{ asset('js/cate_popup.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}">
     </script>

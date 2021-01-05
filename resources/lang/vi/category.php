@@ -24,4 +24,6 @@ return [
     'unknow' => 'Unknow',
     'notifi' => 'Notification',
     'publisher' => 'Publisher',
+    'parent_name' => 'Parent name',
+    'child_name' => 'Child name',
 ];

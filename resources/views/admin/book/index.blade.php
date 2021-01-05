@@ -79,9 +79,7 @@
                                                 </a>
                                                 <a href="{{ route('book.edit', $book->id) }}" title="{{ trans('book.edit_button') }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('book.destroy', $book->id) }}" method="POST"
-                                                    onclick="return confirm('{{ trans('book.dialog_confirm_delete') }}')"
-                                                    class="delete-form general">
+                                                <form id="delete" action="{{ route('book.destroy', $book->id) }}" method="POST" class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" title="{{ trans('book.delete_button') }}">
