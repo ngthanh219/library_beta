@@ -42,33 +42,34 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $category = new Category;
-        if ($request->ajax()) {
-            $result_parent = $category->create([
-                'name' => $request->parent_name,
-                'parent_id' => 0,
-            ]);
-            $result_child = $category->create([
-                'name' => $request->child_name,
-                'parent_id' => $result_parent['id'],
-            ]);
-
-            return response()->json([
-                'dataParent' => $result_parent,
-                'dataChild' => $result_child,
-            ]);
-        } else {
-            $result = $category->create([
-                'name' => $request->name,
-                'parent_id' => $request->parent_id,
-            ]);
-            if ($result) {
-                return redirect()->route('admin.category.index')->with('infoMessage',
-                    trans('message.category_create_success'));
-            }
-
+        $result = $category->create([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id,
+        ]);
+        if ($result) {
             return redirect()->route('admin.category.index')->with('infoMessage',
-                trans('message.category_create_fail'));
+                trans('message.category_create_success'));
         }
+
+        return redirect()->route('admin.category.index')->with('infoMessage',
+            trans('message.category_create_fail'));
+    }
+
+    public function apiStore(Request $request)
+    {
+        $category = new Category;
+        $result_parent = $category->create([
+            'name' => $request->parent_name,
+            'parent_id' => 0,
+        ]);
+        $result_child = $category->create([
+            'name' => $request->child_name,
+            'parent_id' => $result_parent['id'],
+        ]);
+
+        return response()->json([
+            'dataChild' => $result_child,
+        ]);
     }
 
     /**

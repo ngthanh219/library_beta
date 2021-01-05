@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 $('#form').submit(function(e) {
     e.preventDefault();
-    var url = window.location.origin + '/category';
+    var url = window.location.origin + '/admin/api-store-category';
     var parent_name = $('#parent_name').val();
     var child_name = $('#child_name').val();
     $.ajax({
@@ -24,7 +24,6 @@ $('#form').submit(function(e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            'parent_name': parent_name,
             'child_name': child_name,
         },
         success: function(res) {
