@@ -50,7 +50,7 @@ class CategoryController extends Controller
                 'name' => $request->child_name,
                 'parent_id' => $result_parent['id'],
             ]);
-
+            
             return response()->json([
                 'dataParent' => $result_parent,
                 'dataChild' => $result_child,

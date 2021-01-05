@@ -53,7 +53,7 @@
                                                         <i class="fa fa-plus"></i>
                                                     </a>
                                                 </label>
-                                                <select name="category_id[]" class="form-control select2"
+                                                <select name="category_id[]" id="category_id" class="form-control select2"
                                                     multiple="multiple">
                                                     @foreach ($categories as $category)
                                                         @if ($category->books->contains($book))

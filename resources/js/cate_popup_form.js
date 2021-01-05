@@ -20,8 +20,10 @@ $('#form').submit(function(e) {
         url: url,
         type: 'POST',
         dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
-            '_token': '{{ csrf_token() }}',
             'parent_name': parent_name,
             'child_name': child_name,
         },

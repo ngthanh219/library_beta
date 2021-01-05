@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ trans('admin.admin') }}</title>
     <link rel="icon" type="image/png" href="assets/dist/img/logo1.png">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
