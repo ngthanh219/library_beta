@@ -65,8 +65,8 @@
                                                         class="fa fa-eye"></i></a>
                                                 <a href="{{ route('admin.category.edit', $category->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST"
-                                                    class="delete-form general" id="delete">
+                                                <form action="{{ route('admin.category.destroy', $category->id) }}"
+                                                    method="POST" class="delete-form general delete"  id="delete_{{ $category->id }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit">

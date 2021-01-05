@@ -13,7 +13,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        dd('Hello');
+        dd('Client');
     }
 
     /**

@@ -84,7 +84,8 @@
                                                 <a href="{{ route('admin.publisher.edit', $publisher->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
                                                 <form action="{{ route('admin.publisher.destroy', $publisher->id) }}"
-                                                    method="POST" class="delete-form general" id="delete">
+                                                    method="POST" class="delete-form general delete"
+                                                    id="delete_{{ $publisher->id }}">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit">
