@@ -3,13 +3,13 @@
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
             <h1>{{ trans('publisher.publishers_manager') }}</h1>
-            <div class="timeline-footer" style="padding: 10px 0px">
-                <a href="{{ route('publisher.create') }}" class="btn btn-primary btn" style="margin-right: 5px;">
-                    <i class="fa fa-plus-square" style="margin-right: 5px;"></i>
+            <div class="timeline-footer general">
+                <a href="{{ route('publisher.create') }}" class="btn btn-primary btn" general>
+                    <i class="fa fa-plus-square general"></i>
                     {{ trans('publisher.add_submit_button') }}
                 </a>
-                <a href="{{ route('publisher.export') }}" class="btn btn-primary btn" style="margin-right: 5px;">
-                    <i class="fa fa-file-excel-o" style="margin-right: 5px;"></i>
+                <a href="{{ route('publisher.export') }}" class="btn btn-primary btn general">
+                    <i class="fa fa-file-excel-o general"></i>
                     {{ trans('publisher.export_submit_button') }}
                 </a>
             </div>
@@ -30,7 +30,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="box-body" style="">
+                        <div class="box-body">
                             {{ session()->get('infoMessage') }}
                         </div>
                     </div>
@@ -44,9 +44,8 @@
                         <div class="box-header">
                             <h3 class="box-title">{{ trans('publisher.publisher_list') }}</h3>
                             <div class="box-tools">
-                                <div class="input-group input-group-sm hidden-xs" style="width: 300px;">
-                                    <input type="text" onkeyup="showResult(this.value)" name="search"
-                                        class="form-control pull-right"
+                                <div class="input-group input-group-sm hidden-xs">
+                                    <input type="text" name="search-publisher" id="search" class="form-control pull-right"
                                         placeholder="{{ trans('publisher.publisher_filter') }}" autocomplete="off">
                                 </div>
                             </div>
@@ -81,14 +80,14 @@
                                             </td>
                                             <td>{{ $publisher->address ? $publisher->address : trans('publisher.unknow') }}
                                             </td>
-                                            <td style="display: flex;justify-content: center;">
+                                            <td class="td general">
                                                 <a href="{{ route('publisher.edit', $publisher->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
                                                 <form action="{{ route('publisher.destroy', $publisher->id) }}"
-                                                    method="POST" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
+                                                    method="POST" class="delete-form general" id="delete">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit" style="background: none;border: none;">
+                                                    <button type="submit">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>

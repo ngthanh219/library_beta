@@ -127,6 +127,13 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+        if ($category->parent_id == 0) {
+            $children = $category->load('children');
+            if (!$children->children->isEmpty()) {
+                return redirect()->back()->with('infoMessage',
+                    trans('message.category_has_children'));
+            }
+        }
         $result = $category->delete();
         if ($result) {
             return redirect()->back()->with('infoMessage',
