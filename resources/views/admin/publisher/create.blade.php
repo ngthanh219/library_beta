@@ -19,7 +19,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal" action="{{ route('publisher.store') }}" method="post"
+                                <form class="form-horizontal" action="{{ route('admin.publisher.store') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -83,7 +83,7 @@
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" id="add"
                                                 class="btn btn-danger">{{ trans('publisher.add_submit_button') }}</button>
-                                            <a href="{{ route('publisher.index') }}"
+                                            <a href="{{ route('admin.publisher.index') }}"
                                                 class="btn btn-info quaylai">{{ trans('publisher.return') }}</a>
                                         </div>
                                     </div>

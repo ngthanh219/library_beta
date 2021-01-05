@@ -55,7 +55,7 @@
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" id="add"
                                                 class="btn btn-danger">{{ trans('category.edit_submit_button') }}</button>
-                                            <a href="{{ route('category.index') }}"
+                                            <a href="{{ route('admin.category.index') }}"
                                                 class="btn btn-info quaylai">{{ trans('category.return') }}</a>
                                         </div>
                                     </div>

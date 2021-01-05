@@ -109,31 +109,31 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('user.index') }}">
+                        <a href="{{ route('admin.user.index') }}">
                             <i class="fa fa-users"></i>
                             <span>{{ trans('user.users_manager') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('author.index') }}">
+                        <a href="{{ route('admin.author.index') }}">
                             <i class="fa fa-address-book"></i>
                             <span>{{ trans('admin.author') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('publisher.index') }}">
+                        <a href="{{ route('admin.publisher.index') }}">
                             <i class="fa fa-building"></i>
                             <span>{{ trans('admin.publisher') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('category.index') }}">
+                        <a href="{{ route('admin.category.index') }}">
                             <i class="fa fa-tags"></i>
                             <span>{{ trans('admin.category') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('book.index') }}">
+                        <a href="{{ route('admin.book.index') }}">
                             <i class="fa fa-book"></i>
                             <span>{{ trans('book.books_manager') }}</span>
                         </a>
@@ -156,6 +156,8 @@
         <div class="control-sidebar-bg"></div>
     </div>
     <script type="text/javascript" src="{{ asset('/js/sweet-alert.js') }}"></script>
+    <script src="{{ asset('bower_components/admin-lte/dist/js/component/general.js') }}">
+    </script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}">
     </script>

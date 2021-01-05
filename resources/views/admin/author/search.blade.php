@@ -26,9 +26,9 @@
                     <td>{{ $author->date_of_death ? $author->date_of_death : trans('admin.unknow') }}
                     </td>
                     <td style="display: flex;justify-content: center;">
-                        <a href="{{ route('author.edit', $author->id) }}"><i
+                        <a href="{{ route('admin.author.edit', $author->id) }}"><i
                                 class="fa fa-pencil"></i></a>
-                        <form action="{{ route('author.destroy', $author->id) }}" method="POST"
+                        <form action="{{ route('admin.author.destroy', $author->id) }}" method="POST"
                             onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
                             @method('DELETE')
                             @csrf

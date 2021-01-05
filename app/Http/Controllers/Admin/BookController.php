@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Author;
-use App\Models\Publisher;
-use App\Models\Book;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BookRequest;
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Publisher;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -30,7 +31,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent_id', '<>' ,'0')->get();
+        $categories = Category::where('parent_id', '<>', '0')->get();
         $authors = Author::all();
         $publishers = Publisher::all();
 
@@ -61,7 +62,7 @@ class BookController extends Controller
         }
         $request->session()->flash('infoMessage', trans('book.create_book_success'));
 
-        return redirect()->route('book.index');
+        return redirect()->route('admin.book.index');
     }
 
     /**
@@ -78,7 +79,7 @@ class BookController extends Controller
         } else {
             session()->flash('infoMessage', trans('book.isset_id'));
 
-            return redirect()->route('book.index');
+            return redirect()->route('admin.book.index');
         }
     }
 
@@ -90,7 +91,7 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::with('books')->where('parent_id', '<>' ,'0')->get();
+        $categories = Category::with('books')->where('parent_id', '<>', '0')->get();
         $authors = Author::with('books')->get();
         $publishers = Publisher::with('books')->get();
         $book = Book::with('author', 'publisher', 'categories')->findOrFail($id);
@@ -120,7 +121,7 @@ class BookController extends Controller
         $book->update($data);
         $request->session()->flash('infoMessage', trans('book.create_book_success'));
 
-        return redirect()->route('book.index');
+        return redirect()->route('admin.book.index');
     }
 
     /**
@@ -141,7 +142,7 @@ class BookController extends Controller
 
     public function search(Request $request)
     {
-        $books = Book::where('name', 'LIKE', '%' . $request->key . '%',)->orderBy('id', 'DESC')->get();
+        $books = Book::where('name', 'LIKE', '%' . $request->key . '%', )->orderBy('id', 'DESC')->get();
 
         return view('admin.book.search', compact('books'));
     }

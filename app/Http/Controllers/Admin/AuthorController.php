@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
@@ -53,11 +54,11 @@ class AuthorController extends Controller
             'date_of_death' => $request->date_of_death,
         ]);
         if ($result) {
-            return redirect()->route('author.index')->with('infoMessage',
+            return redirect()->route('admin.author.index')->with('infoMessage',
                 trans('message.author_create_success'));
         }
 
-        return redirect()->route('author.index')->with('infoMessage',
+        return redirect()->route('admin.author.index')->with('infoMessage',
             trans('message.author_create_fail'));
     }
 
@@ -109,11 +110,11 @@ class AuthorController extends Controller
             'date_of_death' => $request->date_of_death,
         ]);
         if ($result) {
-            return redirect()->route('author.index')->with('infoMessage',
+            return redirect()->route('admin.author.index')->with('infoMessage',
                 trans('message.author_update_success'));
         }
 
-        return redirect()->route('author.index')->with('infoMessage',
+        return redirect()->route('admin.author.index')->with('infoMessage',
             trans('message.author_update_fail'));
     }
 
@@ -125,14 +126,18 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        $author = Author::findOrFail($id);
+        $author = Author::findOrFail($id)->load('books');
+        if (!$author->books->isEmpty()) {
+            return redirect()->route('admin.author.index')->with('infoMessage',
+                trans('message.author_has_books'));
+        }
         $result = $author->delete();
         if ($result) {
-            return redirect()->route('author.index')->with('infoMessage',
+            return redirect()->route('admin.author.index')->with('infoMessage',
                 trans('message.author_delete_success'));
         }
 
-        return redirect()->route('author.index')->with('infoMessage',
+        return redirect()->route('admin.author.index')->with('infoMessage',
             trans('message.author_delete_fail'));
     }
 

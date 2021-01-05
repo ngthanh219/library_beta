@@ -19,7 +19,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal" action="{{ route('user.update', $user->id) }}" method="post">
+                                <form class="form-horizontal" action="{{ route('admin.user.update', $user->id) }}" method="post">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
@@ -73,7 +73,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" id="add" class="btn btn-danger">{{ trans('user.update_submit_button') }}</button>
-                                            <a href="{{ route('user.index') }}" class="btn btn-info quaylai">{{ trans('user.return') }}</a>
+                                            <a href="{{ route('admin.user.index') }}" class="btn btn-info quaylai">{{ trans('user.return') }}</a>
                                         </div>
                                     </div>
                                 </form>

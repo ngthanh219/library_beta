@@ -31,12 +31,12 @@
                             @endif
                         </td>
                         <td class="td general">
-                            <a href="{{ route('book.show', [$book->id]) }}" title="{{ trans('book.detail') }}">
+                            <a href="{{ route('admin.book.show', [$book->id]) }}" title="{{ trans('book.detail') }}">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="{{ route('book.edit', $book->id) }}" title="{{ trans('book.edit_button') }}"><i
+                            <a href="{{ route('admin.book.edit', $book->id) }}" title="{{ trans('book.edit_button') }}"><i
                                     class="fa fa-pencil"></i></a>
-                            <form action="{{ route('book.destroy', $book->id) }}" method="POST"
+                            <form action="{{ route('admin.book.destroy', $book->id) }}" method="POST"
                                 onclick="return confirm('{{ trans('book.dialog_confirm_delete') }}')"
                                 class="delete-form general">
                                 @method('DELETE')

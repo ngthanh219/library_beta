@@ -4,11 +4,11 @@
         <section class="content-header">
             <h1>{{ trans('publisher.publishers_manager') }}</h1>
             <div class="timeline-footer general">
-                <a href="{{ route('publisher.create') }}" class="btn btn-primary btn" general>
+                <a href="{{ route('admin.publisher.create') }}" class="btn btn-primary btn" general>
                     <i class="fa fa-plus-square general"></i>
                     {{ trans('publisher.add_submit_button') }}
                 </a>
-                <a href="{{ route('publisher.export') }}" class="btn btn-primary btn general">
+                <a href="{{ route('admin.publisher.export') }}" class="btn btn-primary btn general">
                     <i class="fa fa-file-excel-o general"></i>
                     {{ trans('publisher.export_submit_button') }}
                 </a>
@@ -81,9 +81,9 @@
                                             <td>{{ $publisher->address ? $publisher->address : trans('publisher.unknow') }}
                                             </td>
                                             <td class="td general">
-                                                <a href="{{ route('publisher.edit', $publisher->id) }}"><i
+                                                <a href="{{ route('admin.publisher.edit', $publisher->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('publisher.destroy', $publisher->id) }}"
+                                                <form action="{{ route('admin.publisher.destroy', $publisher->id) }}"
                                                     method="POST" class="delete-form general" id="delete">
                                                     @method('DELETE')
                                                     @csrf

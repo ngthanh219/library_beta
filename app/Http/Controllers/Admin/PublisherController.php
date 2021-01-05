@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Exports\PublishersExport;
+use App\Http\Controllers\Controller;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -55,11 +56,11 @@ class PublisherController extends Controller
             'description' => $request->description,
         ]);
         if ($result) {
-            return redirect()->route('publisher.index')->with('infoMessage',
+            return redirect()->route('admin.publisher.index')->with('infoMessage',
                 trans('message.publisher_create_success'));
         }
 
-        return redirect()->route('publisher.index')->with('infoMessage',
+        return redirect()->route('admin.publisher.index')->with('infoMessage',
             trans('message.publisher_create_fail'));
     }
 
@@ -112,11 +113,11 @@ class PublisherController extends Controller
             'description' => $request->description,
         ]);
         if ($result) {
-            return redirect()->route('publisher.index')->with('infoMessage',
+            return redirect()->route('admin.publisher.index')->with('infoMessage',
                 trans('message.publisher_update_success'));
         }
 
-        return redirect()->route('publisher.index')->with('infoMessage',
+        return redirect()->route('admin.publisher.index')->with('infoMessage',
             trans('message.publisher_update_fail'));
     }
 
@@ -128,14 +129,18 @@ class PublisherController extends Controller
      */
     public function destroy($id)
     {
-        $publisher = Publisher::findOrFail($id);
+        $publisher = Publisher::findOrFail($id)->load('books');
+        if (!$publisher->books->isEmpty()) {
+            return redirect()->route('admin.publisher.index')->with('infoMessage',
+                trans('message.publisher_has_books'));
+        }
         $result = $publisher->delete();
         if ($result) {
-            return redirect()->route('publisher.index')->with('infoMessage',
+            return redirect()->route('admin.publisher.index')->with('infoMessage',
                 trans('message.publisher_delete_success'));
         }
 
-        return redirect()->route('publisher.index')->with('infoMessage',
+        return redirect()->route('admin.publisher.index')->with('infoMessage',
             trans('message.publisher_delete_fail'));
     }
 
