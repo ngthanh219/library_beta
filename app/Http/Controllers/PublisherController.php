@@ -128,7 +128,11 @@ class PublisherController extends Controller
      */
     public function destroy($id)
     {
-        $publisher = Publisher::findOrFail($id);
+        $publisher = Publisher::findOrFail($id)->load('books');
+        if (!$publisher->books->isEmpty()) {
+            return redirect()->route('publisher.index')->with('infoMessage',
+                trans('message.publisher_has_books'));
+        }
         $result = $publisher->delete();
         if ($result) {
             return redirect()->route('publisher.index')->with('infoMessage',

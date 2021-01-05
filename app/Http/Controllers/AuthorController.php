@@ -125,7 +125,11 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        $author = Author::findOrFail($id);
+        $author = Author::findOrFail($id)->load('books');
+        if (!$author->books->isEmpty()) {
+            return redirect()->route('author.index')->with('infoMessage',
+                trans('message.author_has_books'));
+        }
         $result = $author->delete();
         if ($result) {
             return redirect()->route('author.index')->with('infoMessage',
