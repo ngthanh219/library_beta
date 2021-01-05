@@ -109,31 +109,31 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('user.index') }}">
+                        <a href="{{ route('admin.user.index') }}">
                             <i class="fa fa-users"></i>
                             <span>{{ trans('user.users_manager') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('author.index') }}">
+                        <a href="{{ route('admin.author.index') }}">
                             <i class="fa fa-address-book"></i>
                             <span>{{ trans('admin.author') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('publisher.index') }}">
+                        <a href="{{ route('admin.publisher.index') }}">
                             <i class="fa fa-building"></i>
                             <span>{{ trans('admin.publisher') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('category.index') }}">
+                        <a href="{{ route('admin.category.index') }}">
                             <i class="fa fa-tags"></i>
                             <span>{{ trans('admin.category') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('book.index') }}">
+                        <a href="{{ route('admin.book.index') }}">
                             <i class="fa fa-book"></i>
                             <span>{{ trans('book.books_manager') }}</span>
                         </a>

@@ -19,7 +19,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal" action="{{ route('category.store') }}" method="post"
+                                <form class="form-horizontal" action="{{ route('admin.category.store') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -48,7 +48,7 @@
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" id="add"
                                                 class="btn btn-danger">{{ trans('category.add_submit_button') }}</button>
-                                            <a href="{{ route('category.index') }}"
+                                            <a href="{{ route('admin.category.index') }}"
                                                 class="btn btn-info quaylai">{{ trans('category.return') }}</a>
                                         </div>
                                     </div>

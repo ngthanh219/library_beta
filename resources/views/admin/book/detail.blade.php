@@ -36,9 +36,9 @@
                                 </li>
                             </ul>
                             <div class="form-group text-center">
-                                <a href="{{ route('book.edit', [$book->id]) }}"
+                                <a href="{{ route('admin.book.edit', [$book->id]) }}"
                                     class="btn btn-danger"><b>{{ trans('book.edit_information') }}</b></a>
-                                <a href="{{ route('book.index') }}"
+                                <a href="{{ route('admin.book.index') }}"
                                     class="btn btn-primary"><b>{{ trans('book.return') }}</b></a>
                             </div>
                         </div>

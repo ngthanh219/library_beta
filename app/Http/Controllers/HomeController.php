@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -12,6 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin');
     }
 
     /**
@@ -21,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return redirect()->route('user.index');
     }
 }

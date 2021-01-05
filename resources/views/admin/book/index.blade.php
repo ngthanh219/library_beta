@@ -4,7 +4,7 @@
         <section class="content-header">
             <h1>{{ trans('book.books_manager') }}</h1>
             <div class="timeline-footer general">
-                <a href="{{ route('book.create') }}" class="btn btn-primary btn general">
+                <a href="{{ route('admin.book.create') }}" class="btn btn-primary btn general">
                     <i class="fa fa-plus-square general"></i> {{ trans('book.add_button') }}
                 </a>
             </div>
@@ -74,12 +74,12 @@
                                                 @endif
                                             </td>
                                             <td class="td general">
-                                                <a href="{{ route('book.show', [$book->id]) }}" title="{{ trans('book.detail') }}">
+                                                <a href="{{ route('admin.book.show', [$book->id]) }}" title="{{ trans('book.detail') }}">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="{{ route('book.edit', $book->id) }}" title="{{ trans('book.edit_button') }}"><i
+                                                <a href="{{ route('admin.book.edit', $book->id) }}" title="{{ trans('book.edit_button') }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form id="delete" action="{{ route('book.destroy', $book->id) }}" method="POST" class="delete-form general">
+                                                <form id="delete" action="{{ route('admin.book.destroy', $book->id) }}" method="POST" class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" title="{{ trans('book.delete_button') }}">

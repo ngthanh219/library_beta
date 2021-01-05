@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -46,11 +47,11 @@ class UserController extends Controller
             User::create($data);
             $request->session()->flash('infoMessage', trans('user.create_user_success'));
 
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         } else {
             $request->session()->flash('checkIssetEmail', trans('user.isset_email'));
 
-            return redirect()->route('user.create');
+            return redirect()->route('admin.user.index');
         }
     }
 
@@ -79,7 +80,7 @@ class UserController extends Controller
         } else {
             session()->flash('infoMessage', trans('user.isset_id'));
 
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         }
     }
 
@@ -101,11 +102,11 @@ class UserController extends Controller
             ]);
             session()->flash('infoMessage', trans('user.update_user_success'));
 
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         } else {
             session()->flash('infoMessage', trans('user.isset_id'));
 
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         }
     }
 
@@ -122,11 +123,11 @@ class UserController extends Controller
             $user->delete();
             session()->flash('infoMessage', trans('user.delete_user_success'));
 
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         } else {
             session()->flash('infoMessage', trans('user.isset_id'));
 
-            return redirect()->route('user.index');
+            return redirect()->route('admin.user.index');
         }
     }
 

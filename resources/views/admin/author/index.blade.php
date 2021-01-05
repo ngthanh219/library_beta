@@ -4,7 +4,7 @@
         <section class="content-header">
             <h1>{{ trans('admin.authors_manager') }}</h1>
             <div class="timeline-footer general">
-                <a href="{{ route('author.create') }}" class="btn btn-primary btn general">
+                <a href="{{ route('admin.author.create') }}" class="btn btn-primary btn general">
                     <i class="fa fa-plus-square general"></i> {{ trans('admin.add_submit_button') }}
                 </a>
             </div>
@@ -77,9 +77,9 @@
                                             <td>{{ $author->date_of_death ? $author->date_of_death : trans('admin.unknow') }}
                                             </td>
                                             <td class="td general">
-                                                <a href="{{ route('author.edit', $author->id) }}"><i
+                                                <a href="{{ route('admin.author.edit', $author->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('author.destroy', $author->id) }}" method="POST"
+                                                <form action="{{ route('admin.author.destroy', $author->id) }}" method="POST"
                                                     class="delete delete-form general" id="delete">
                                                     @method('DELETE')
                                                     @csrf

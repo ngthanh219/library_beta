@@ -4,7 +4,7 @@
         <section class="content-header">
             <h1>{{ trans('user.users_manager') }}</h1>
             <div class="timeline-footer general">
-                <a href="{{ route('user.create') }}" class="btn btn-primary btn general">
+                <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn general">
                     <i class="fa fa-plus-square general"></i> {{ trans('user.add_submit_button') }}
                 </a>
             </div>
@@ -65,9 +65,9 @@
                                             <td>{{ $user->role_id == 0 ? 'Admin' : 'User' }}</td>
                                             <td>{{ $user->status == 0 ? trans('user.on') : trans('user.off') }}</td>
                                             <td class="td general">
-                                                <a href="{{ route('user.edit', $user->id) }}"><i
+                                                <a href="{{ route('admin.user.edit', $user->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form id="delete" action="{{ route('user.destroy', $user->id) }}" method="POST" class="delete-form general">
+                                                <form id="delete" action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit">

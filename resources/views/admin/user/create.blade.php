@@ -19,7 +19,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal" action="{{ route('user.store') }}" method="post">
+                                <form class="form-horizontal" action="{{ route('admin.user.store') }}" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <label for="inputName" class="col-sm-2 control-label">{{ trans('user.name') }}</label>
@@ -72,7 +72,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" id="add" class="btn btn-danger">{{ trans('user.add_submit_button') }}</button>
-                                            <a href="{{ route('user.index') }}" class="btn btn-info quaylai">{{ trans('user.return') }}</a>
+                                            <a href="{{ route('admin.user.index') }}" class="btn btn-info quaylai">{{ trans('user.return') }}</a>
                                         </div>
                                     </div>
                                 </form>

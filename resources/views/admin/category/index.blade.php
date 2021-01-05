@@ -4,7 +4,7 @@
         <section class="content-header">
             <h1>{{ trans('category.categories_manager') }}</h1>
             <div class="timeline-footer general">
-                <a href="{{ route('category.create') }}" class="btn btn-primary btn general">
+                <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn general">
                     <i class="fa fa-plus-square general"></i>
                     {{ trans('category.add_submit_button') }}
                 </a>
@@ -61,11 +61,11 @@
                                                 <b>{{ $category->name }}</b>
                                             </td>
                                             <td class="td general">
-                                                <a href="{{ route('category.show', $category->id) }}"><i
+                                                <a href="{{ route('admin.category.show', $category->id) }}"><i
                                                         class="fa fa-eye"></i></a>
-                                                <a href="{{ route('category.edit', $category->id) }}"><i
+                                                <a href="{{ route('admin.category.edit', $category->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('category.destroy', $category->id) }}" method="POST"
+                                                <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST"
                                                     class="delete-form general" id="delete">
                                                     @csrf
                                                     @method('DELETE')

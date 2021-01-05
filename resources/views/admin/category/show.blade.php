@@ -4,7 +4,7 @@
         <section class="content-header">
             <h1>{{ trans('category.categories_manager') }}</h1>
             <div class="timeline-footer general">
-                <a href="{{ route('category.create') }}" class="btn btn-primary btn general">
+                <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn general">
                     <i class="fa fa-plus-square general"></i> {{ trans('category.add_submit_button') }}
                 </a>
             </div>
@@ -57,9 +57,9 @@
                                         <tr>
                                             <td>{{ $children->name }}</td>
                                             <td class="td general">
-                                                <a href="{{ route('category.edit', $children->id) }}"><i
+                                                <a href="{{ route('admin.category.edit', $children->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('category.destroy', $children    ->id) }}" method="POST"
+                                                <form action="{{ route('admin.category.destroy', $children    ->id) }}" method="POST"
                                                     onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
                                                     class="delete-form general">
                                                     @method('DELETE')

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class CategoryController extends Controller
                 'name' => $request->child_name,
                 'parent_id' => $result_parent['id'],
             ]);
-            
+
             return response()->json([
                 'dataParent' => $result_parent,
                 'dataChild' => $result_child,
@@ -61,11 +62,11 @@ class CategoryController extends Controller
                 'parent_id' => $request->parent_id,
             ]);
             if ($result) {
-                return redirect()->route('category.index')->with('infoMessage',
+                return redirect()->route('admin.category.index')->with('infoMessage',
                     trans('message.category_create_success'));
             }
 
-            return redirect()->route('category.index')->with('infoMessage',
+            return redirect()->route('admin.category.index')->with('infoMessage',
                 trans('message.category_create_fail'));
         }
     }
@@ -119,11 +120,11 @@ class CategoryController extends Controller
         $parent = $category->load('parent');
         if ($result) {
             if (isset($parent->parent)) {
-                return redirect()->route('category.show', $parent['parent']->id)->with('infoMessage',
+                return redirect()->route('admin.category.show', $parent['parent']->id)->with('infoMessage',
                     trans('message.category_update_success'));
             }
 
-            return redirect()->route('category.index')->with('infoMessage',
+            return redirect()->route('admin.category.index')->with('infoMessage',
                 trans('message.category_update_success'));
         }
 
@@ -153,7 +154,7 @@ class CategoryController extends Controller
                 trans('message.category_delete_success'));
         }
 
-        return redirect()->route('category.index')->with('infoMessage',
+        return redirect()->route('admin.category.index')->with('infoMessage',
             trans('message.category_delete__fail'));
     }
 }
