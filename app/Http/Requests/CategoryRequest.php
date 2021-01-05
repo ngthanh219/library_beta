@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class AuthorRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,13 @@ class AuthorRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('category');
+
         return [
             'name' => [
-                'required
-                |max:255|
-                required', Rule::unique('authors')->ignore($id),
+                'required', Rule::unique('categories')->ignore($id)
             ],
-            'description' => 'max:255',
-            'date_of_born' => 'date|nullable|before:tomorrow',
-            'date_of_death' => 'date|nullable|after:date_of_born',
+            'parent_id' => 'required|numeric|min:0',
         ];
     }
 }

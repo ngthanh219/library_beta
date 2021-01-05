@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/js/editor.js": "/js/editor.js",
     "/js/select2.js": "/js/select2.js",
+    "/js/sweet-alert.js": "/js/sweet-alert.js",
     "/css/all.css": "/css/all.css"
 }
