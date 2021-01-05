@@ -53,7 +53,7 @@
                                                         <i class="fa fa-plus"></i>
                                                     </a>
                                                 </label>
-                                                <select name="category_id[]" class="form-control select2"
+                                                <select name="category_id[]" id="category_id" class="form-control select2"
                                                     multiple="multiple">
                                                     @foreach ($categories as $category)
                                                         @if ($category->books->contains($book))
@@ -167,7 +167,9 @@
                 </div>
             </div>
         </section>
+        <div class="cafe-f" id="cate-f"></div>
     </div>
+    <script src="{{ asset('js/cate_popup.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}">
     </script>

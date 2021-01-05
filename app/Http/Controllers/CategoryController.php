@@ -40,17 +40,46 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $category = new Category;
-        $result = $category->create([
-            'name' => $request->name,
-            'parent_id' => $request->parent_id,
-        ]);
-        if ($result) {
+        if ($request->ajax()) {
+            $result_parent = $category->create([
+                'name' => $request->parent_name,
+                'parent_id' => 0,
+            ]);
+            $result_child = $category->create([
+                'name' => $request->child_name,
+                'parent_id' => $result_parent['id'],
+            ]);
+            
+            return response()->json([
+                'dataParent' => $result_parent,
+                'dataChild' => $result_child,
+            ]);
+        } else {
+            $result = $category->create([
+                'name' => $request->name,
+                'parent_id' => $request->parent_id,
+            ]);
+            if ($result) {
+                return redirect()->route('category.index')->with('infoMessage',
+                    trans('message.category_create_success'));
+            }
+
             return redirect()->route('category.index')->with('infoMessage',
-                trans('message.category_create_success'));
+                trans('message.category_create_fail'));
         }
 
-        return redirect()->route('category.index')->with('infoMessage',
-            trans('message.category_create_fail'));
+        // $category = new Category;
+        // $result = $category->create([
+        //     'name' => $request->name,
+        //     'parent_id' => $request->parent_id,
+        // ]);
+        // if ($result) {
+        //     return redirect()->route('category.index')->with('infoMessage',
+        //         trans('message.category_create_success'));
+        // }
+
+        // return redirect()->route('category.index')->with('infoMessage',
+        //     trans('message.category_create_fail'));
     }
 
     /**
@@ -101,16 +130,12 @@ class CategoryController extends Controller
         ]);
         $parent = $category->load('parent');
         if ($result) {
-<<<<<<< HEAD
-            return redirect()->route('category.show', $parent['parent']->id)->with('infoMessage',
-=======
             if (isset($parent->parent)) {
                 return redirect()->route('category.show', $parent['parent']->id)->with('infoMessage',
                     trans('message.category_update_success'));
             }
 
             return redirect()->route('category.index')->with('infoMessage',
->>>>>>> 405903469a0ef7634f23f238ecb327985f6b2bb3
                 trans('message.category_update_success'));
         }
 

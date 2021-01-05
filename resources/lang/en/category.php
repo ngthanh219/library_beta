@@ -22,4 +22,6 @@ return [
     'unknow' => 'Unknow',
     'notifi' => 'Notification',
     'category' => 'Category',
+    'parent_name' => 'Parent name',
+    'child_name' => 'Child name',
 ];

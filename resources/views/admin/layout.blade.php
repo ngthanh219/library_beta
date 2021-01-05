@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ trans('admin.admin') }}</title>
     <link rel="icon" type="image/png" href="assets/dist/img/logo1.png">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -25,8 +26,8 @@
         href="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+    <script src="{{ asset('bower_components/bootstrap-sweetalert/dist/sweetalert.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/jquery/dist/jquery.min.js') }}"></script>
-    <script src="bower_components/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/dist/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-sweetalert/dist/sweetalert.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">

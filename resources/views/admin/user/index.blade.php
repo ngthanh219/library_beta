@@ -67,9 +67,7 @@
                                             <td class="td general">
                                                 <a href="{{ route('user.edit', $user->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
-                                                    class="delete-form general">
+                                                <form id="delete" action="{{ route('user.destroy', $user->id) }}" method="POST" class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit">
