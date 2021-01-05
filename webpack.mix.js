@@ -14,4 +14,6 @@ const { bindAll } = require('lodash');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .styles('resources/css/all.css', 'public/css/all.css');
+    .styles('resources/css/all.css', 'public/css/all.css')
+    .js('resources/js/select2.js', 'public/js/select2.js')
+    .js('resources/js/editor.js', 'public/js/editor.js');

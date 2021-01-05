@@ -12,69 +12,62 @@
                 <div class="col-md-3">
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle"
-                                src="{{ asset('upload/book/' . $book->image) }}"
-                                title="{{ trans('book.book') }}: {{ $book->name }}">
+                            @if ($book->image = '')
+                                <img class="profile-user-img img-responsive img-circle"
+                                    src="{{ asset('upload/book/' . $book->image) }}"
+                                    title="{{ trans('book.book') }}: {{ $book->name }}">
+                            @else
+                                {{ trans('book.image') . ': ' . trans('book.unknow') }}
+                            @endif
                             <h3 class="profile-username text-center">{{ $book->name }}</h3>
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Name</b> <a class="pull-right">{{ $book->name }}</a>
+                                    <b>{{ trans('book.name') }}</b> <a class="pull-right">{{ $book->name }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>In Stock</b> <a class="pull-right">{{ $book->in_stock }}</a>
+                                    <b>{{ trans('book.in_stock') }}</b> <a class="pull-right">{{ $book->in_stock }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Total</b> <a class="pull-right">{{ $book->total }}</a>
+                                    <b>{{ trans('book.total') }}</b> <a class="pull-right">{{ $book->total }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Trạng thái</b> <a
-                                        class="pull-right">{{ $book->status == 0 ? 'Đang hiển thị' : 'Đã ẩn' }}</a>
+                                    <b>{{ trans('book.status') }}</b> <a
+                                        class="pull-right">{{ $book->status == 0 ? trans('book.visible') : trans('book.hidden') }}</a>
                                 </li>
                             </ul>
                             <div class="form-group text-center">
-                                <a href="{{ route('book.edit', [$book->id]) }}" class="btn btn-danger"><b>Chỉnh sửa
-                                        thông tin</b></a>
-                                <a href="{{ route('book.index') }}" class="btn btn-primary"><b>Quay lại</b></a>
+                                <a href="{{ route('book.edit', [$book->id]) }}"
+                                    class="btn btn-danger"><b>{{ trans('book.edit_information') }}</b></a>
+                                <a href="{{ route('book.index') }}"
+                                    class="btn btn-primary"><b>{{ trans('book.return') }}</b></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-md-9">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Chi tiet</h3>
-                        </div>
-                        <div class="box-body">
-                            <p>{!! $book->description !!}</p>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="col-sm-9">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">About Me</h3>
+                            <h3 class="box-title">{{ trans('book.detail') }}</h3>
                         </div>
                         <div class="box-body">
-                            <strong><i class="fa fa-tags margin-r-5"></i> Category</strong>
-                            <p class="text-muted">
-                                <span class="label label-danger">
-                                    @foreach ($book->categories as $category)
-                                        {{ $category->name }}
-                                    @endforeach
-                                </span>
-                            </p>
+                            <strong><i class="fa fa-tags margin-r-5"></i> {{ trans('category.category') }}</strong>
+                            <div class="timeline-footer">
+                                @foreach ($book->categories as $category)
+                                    <a class="btn btn-warning btn-xs">{{ $category->name }}</a>
+                                @endforeach
+                            </div>
                             <hr>
-                            <strong><i class="fa fa-address-book margin-r-5"></i> Author</strong>
+                            <strong><i class="fa fa-address-book margin-r-5"></i> {{ trans('admin.author') }}</strong>
                             <p class="text-muted">{{ $book->author->name }}</p>
                             <hr>
-                            <strong><i class="fa fa-building margin-r-5"></i> Publisher</strong>
+                            <strong><i class="fa fa-building margin-r-5"></i> {{ trans('admin.publisher') }}</strong>
                             <p>
                                 {{ $book->publisher->name }}
                             </p>
                             <hr>
-                            <strong><i class="fa fa-file-text-o margin-r-5"></i> Description</strong>
+                            <strong><i class="fa fa-file-text-o margin-r-5"></i> {{ trans('book.des') }}</strong>
                             <p>
-                                {!! ($book->description == '') ? 'Unknow' : $book->description !!}
+                                {!! $book->description == '' ? trans('book.unknow') : $book->description !!}
                             </p>
                         </div>
                     </div>

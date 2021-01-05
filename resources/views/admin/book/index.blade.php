@@ -63,28 +63,28 @@
                                                     <img class="image" src="{{ asset('upload/book/' . $book->image) }}"
                                                         title="{{ trans('book.book') }}: {{ $book->name }}">
                                                 @else
-                                                    {{ trans('publisher.unknow') }}
+                                                    {{ trans('book.image') . ': ' . trans('book.unknow') }}
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($book->status == 0)
-                                                    <p class="success-order">{{ trans('visible') }}</p>
+                                                    <p class="success-order">{{ trans('book.visible') }}</p>
                                                 @else
-                                                    <p class="waiting-order">{{ trans('hidden') }}</p>
+                                                    <p class="waiting-order">{{ trans('book.hidden') }}</p>
                                                 @endif
                                             </td>
                                             <td class="td general">
-                                                <a href="{{ route('book.show', [$book->id]) }}" title="Xem chi tiết">
+                                                <a href="{{ route('book.show', [$book->id]) }}" title="{{ trans('book.detail') }}">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="{{ route('book.edit', $book->id) }}"><i
+                                                <a href="{{ route('book.edit', $book->id) }}" title="{{ trans('book.edit_button') }}"><i
                                                         class="fa fa-pencil"></i></a>
                                                 <form action="{{ route('book.destroy', $book->id) }}" method="POST"
-                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                                                    onclick="return confirm('{{ trans('book.dialog_confirm_delete') }}')"
                                                     class="delete-form general">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit">
+                                                    <button type="submit" title="{{ trans('book.delete_button') }}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
