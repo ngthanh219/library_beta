@@ -27,4 +27,5 @@ return [
     'notifi' => 'Notification',
     'publisher' => 'Publisher',
     'category' => 'Category',
+    'role' => 'Role',
 ];
