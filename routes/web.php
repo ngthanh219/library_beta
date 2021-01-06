@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
         Route::get('publisher/export', 'PublisherController@export')->name('publisher.export');
         Route::get('search-user', 'UserController@search')->name('search-user');
+        Route::resource('role', 'RoleController');
         Route::resource('user', 'UserController');
         Route::resource('author', 'AuthorController');
         Route::resource('publisher', 'PublisherController');

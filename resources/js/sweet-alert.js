@@ -2,7 +2,7 @@ $(document).ready(function() {
     $(".delete").click(function(e) {
         e.preventDefault();
         var btn_delete = e.currentTarget.id;
-        console.log()
+
         swal({
                 title: "Are you sure?",
                 text: "You will not be able to recover this imaginary file!",
