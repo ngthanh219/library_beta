@@ -47,7 +47,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" id="add"
-                                                class="btn btn-danger">{{ trans('role.add_submit_button') }}</button>
+                                                class="btn btn-danger">{{ trans('role.addgit_submit_button') }}</button>
                                             <a href="{{ route('admin.role.index') }}"
                                                 class="btn btn-info quaylai">{{ trans('admin.return') }}</a>
                                         </div>

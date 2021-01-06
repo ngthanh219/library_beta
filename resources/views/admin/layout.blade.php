@@ -104,12 +104,14 @@
                     </div>
                 </div>
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li>
-                        <a href="{{ route('admin.role.index') }}">
-                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                            <span>{{ trans('admin.role') }}</span>
-                        </a>
-                    </li>
+                    @can('admin-role')
+                        <li>
+                            <a href="{{ route('admin.role.index') }}">
+                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                <span>{{ trans('admin.role') }}</span>
+                            </a>
+                        </li>
+                    @endcan
                     <li>
                         <a href="#">
                             <i class="fa fa-home"></i> <span>{{ trans('user.home') }}</span>
