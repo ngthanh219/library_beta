@@ -26,6 +26,7 @@ return [
     'notifi' => 'Notification',
     'request' => 'Request',
     'total_date' => 'Total date',
+    'days' => 'days',
     'pending_mess' => 'You are waiting to review the book so you cannot borrow any more',
     'late_mess' => 'You have not returned the book',
 ];

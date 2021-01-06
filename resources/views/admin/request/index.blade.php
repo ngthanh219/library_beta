@@ -64,6 +64,14 @@
                                             <td>
                                                 <b>{{ $request->return_date }}</b>
                                             </td>
+                                            @php
+                                                $start_time = \Carbon\Carbon::parse($request->borrowed_date);
+                                                $finish_time = \Carbon\Carbon::parse($request->return_date);
+                                                $total_date = $finish_time->diffinDays($start_time);
+                                            @endphp
+                                            <td>
+                                                <b>{{ $total_date }} {{ trans('request.days') }}</b>
+                                            </td>
                                             <td>
                                                 @if ($request->status == 0)
                                                     <p class="waiting-order">{{ trans('request.pending') }}</p>
