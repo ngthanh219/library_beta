@@ -15,6 +15,7 @@ return [
     'edit_submit_button' => 'Edit',
     'return' => 'Return',
     'role_create' => 'Role Create',
+    'role_edit' => 'Role Edit',
     'role_form' => 'Role From',
     'actions' => 'Actions',
     'notifi' => 'Notification',
