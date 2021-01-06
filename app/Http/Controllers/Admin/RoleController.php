@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('super_admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::orderBy('id', 'DESC')->get();
 
         return view('admin.role.index', compact('roles'));
     }
@@ -29,7 +34,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::orderBy('id', 'DESC')->get();
 
         return view('admin.role.create', compact('permissions'));
     }

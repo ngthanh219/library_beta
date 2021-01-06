@@ -32,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">{{ trans('role.select_permissions') }}</label>
+                                        <label class="col-sm-2 control-label">{{ trans('role.permissions') }}</label>
                                         <div class="col-sm-10">
                                             <select class="form-control select2" style="width: 100%" id="sel1"
                                                 name="permissions[]" multiple="multiple">
@@ -47,7 +47,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" id="add"
-                                                class="btn btn-danger">{{ trans('role.edit_submit_button') }}</button>
+                                                class="btn btn-danger">{{ trans('role.addgit_submit_button') }}</button>
                                             <a href="{{ route('admin.role.index') }}"
                                                 class="btn btn-info quaylai">{{ trans('admin.return') }}</a>
                                         </div>

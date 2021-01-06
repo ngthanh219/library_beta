@@ -2,7 +2,7 @@
 @section('index')
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
-            <h1>{{ trans('role.categories_manager') }}</h1>
+            <h1>{{ trans('role.role_manager') }}</h1>
             <div class="timeline-footer general">
                 <a href="{{ route('admin.role.create') }}" class="btn btn-primary btn general">
                     <i class="fa fa-plus-square general"></i>
@@ -60,10 +60,11 @@
                                             <b>{{ $role->name }}</b>
                                         </td>
                                         <td class="td general">
-                                            @foreach ($role->permissions as $permission)
-                                                {{ $permission->name }}
-                                            @endforeach
-                                            a
+                                            <div class="d-flex">
+                                                @foreach ($role->permissions as $permission)
+                                                    <div class="label label-primary">{{ $permission->description }}</div>
+                                                @endforeach
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>

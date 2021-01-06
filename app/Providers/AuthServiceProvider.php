@@ -31,5 +31,11 @@ class AuthServiceProvider extends ServiceProvider
                 return $user->hasPermission($pms);
             });
         }
+
+        Gate::define('admin-role', function ($user) {
+            if ($user->role_id == 3) {
+               return true;
+            }
+        });
     }
 }
