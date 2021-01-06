@@ -1,16 +1,16 @@
-@extends('admin.layout')
+@extends('admin/layout')
 @section('index')
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
-            <h1>{{ trans('category.categories_manager') }}</h1>
+            <h1>{{ trans('role.categories_manager') }}</h1>
             <div class="timeline-footer general">
-                <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn general">
+                <a href="{{ route('admin.role.create') }}" class="btn btn-primary btn general">
                     <i class="fa fa-plus-square general"></i>
-                    {{ trans('category.add_submit_button') }}
+                    {{ trans('role.add_submit_button') }}
                 </a>
             </div>
             <ol class="breadcrumb">
-                <li>{{ trans('category.category') }}</li>
+                <li>{{ trans('role.role') }}</li>
             </ol>
             @if (session()->has('infoMessage'))
                 <div class="infoMessage">
@@ -18,7 +18,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">
                                 <i class="fa fa-bell-o"></i>
-                                {{ trans('category.notifi') }}
+                                {{ trans('role.notifi') }}
                             </h3>
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -38,12 +38,12 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">{{ trans('category.category_list') }}</h3>
+                            <h3 class="box-title">{{ trans('role.role_list') }}</h3>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs">
                                     <input type="text" onkeyup="showResult(this.value)" name="search"
-                                        class="form-control pull-right"
-                                        placeholder="{{ trans('category.category_search') }}" autocomplete="off">
+                                        class="form-control pull-right" placeholder="{{ trans('role.role_search') }}"
+                                        autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -52,30 +52,19 @@
                             <table class="table table-hover text-center">
                                 <tbody>
                                     <tr>
-                                        <th>{{ trans('category.category_name') }}</th>
-                                        <th>{{ trans('category.actions') }}</th>
+                                        <th>{{ trans('role.role_name') }}</th>
+                                        <th>{{ trans('role.permissions') }}</th>
                                     </tr>
-                                    @foreach ($categories as $category)
-                                        <tr>
-                                            <td>
-                                                <b>{{ $category->name }}</b>
-                                            </td>
-                                            <td class="td general">
-                                                <a href="{{ route('admin.category.show', $category->id) }}"><i
-                                                        class="fa fa-eye"></i></a>
-                                                <a href="{{ route('admin.category.edit', $category->id) }}"><i
-                                                        class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('admin.category.destroy', $category->id) }}"
-                                                    method="POST" class="delete-form general delete"  id="delete_{{ $category->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <td>
+                                            <b>{{ $role->name }}</b>
+                                        </td>
+                                        <td class="td general">
+                                            @foreach ($role->permissions as $permission)
+                                                {{ $permission->name }}
+                                            @endforeach
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <div class="col-sm-12 text-right">
@@ -87,6 +76,6 @@
             </div>
         </section>
     </div>
-    <script type="text/javascript"
-        src="{{ asset('bower_components/category-lte/dist/js/component/search/search_category.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('bower_components/role-lte/dist/js/component/search/search_role.js') }}"
+        defer></script>
 @endsection

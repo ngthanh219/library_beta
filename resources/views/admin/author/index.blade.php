@@ -79,8 +79,9 @@
                                             <td class="td general">
                                                 <a href="{{ route('admin.author.edit', $author->id) }}"><i
                                                         class="fa fa-pencil"></i></a>
-                                                <form action="{{ route('admin.author.destroy', $author->id) }}" method="POST"
-                                                    class="delete delete-form general" id="delete">
+                                                <form action="{{ route('admin.author.destroy', $author->id) }}"
+                                                    method="POST" class="delete delete-form general"
+                                                    id="delete_{{ $author->id }}">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit">
