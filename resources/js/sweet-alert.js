@@ -1,6 +1,8 @@
 $(document).ready(function() {
-    $("#delete").click(function(e) {
+    $(".delete").click(function(e) {
         e.preventDefault();
+        var btn_delete = e.currentTarget.id;
+
         swal({
                 title: "Are you sure?",
                 text: "You will not be able to recover this imaginary file!",
@@ -16,7 +18,7 @@ $(document).ready(function() {
                 if (isConfirm) {
                     swal("Shortlisted!", "Candidates are successfully shortlisted!", "success");
                     setTimeout(function() {
-                        $('#delete').submit();
+                        $('#' + btn_delete).submit();
                     }, 1500);
                 } else {
                     swal("Cancelled", "Your imaginary file is safe :)", "error");

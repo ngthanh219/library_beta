@@ -19,4 +19,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/select2.js', 'public/js/select2.js')
     .js('resources/js/editor.js', 'public/js/editor.js')
     .js('resources/js/cate_popup.js', 'public/js/cate_popup.js')
-    .js('resources/js/cate_popup_form.js', 'public/js/cate_popup_form.js');
+    .js('resources/js/cate_popup_form.js', 'public/js/cate_popup_form.js')
+    .js('resources/js/user_menu.js', 'public/js')

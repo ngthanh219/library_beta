@@ -74,12 +74,15 @@
                                                 @endif
                                             </td>
                                             <td class="td general">
-                                                <a href="{{ route('admin.book.show', [$book->id]) }}" title="{{ trans('book.detail') }}">
+                                                <a href="{{ route('admin.book.show', [$book->id]) }}"
+                                                    title="{{ trans('book.detail') }}">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="{{ route('admin.book.edit', $book->id) }}" title="{{ trans('book.edit_button') }}"><i
-                                                        class="fa fa-pencil"></i></a>
-                                                <form id="delete" action="{{ route('admin.book.destroy', $book->id) }}" method="POST" class="delete-form general">
+                                                <a href="{{ route('admin.book.edit', $book->id) }}"
+                                                    title="{{ trans('book.edit_button') }}"><i class="fa fa-pencil"></i></a>
+                                                <form id="delete_{{ $book->id }}"
+                                                    action="{{ route('admin.book.destroy', $book->id) }}" method="POST"
+                                                    class="delete-form general delete">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" title="{{ trans('book.delete_button') }}">

@@ -26,10 +26,11 @@
         href="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
-    <script src="{{ asset('bower_components/bootstrap-sweetalert/dist/sweetalert.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('bower_components/bootstrap-sweetalert/dist/sweetalert.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/dist/css/skins/_all-skins.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-sweetalert/dist/sweetalert.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('bower_components/bootstrap-sweetalert/dist/sweetalert.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 </head>
 
@@ -48,7 +49,7 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
+                        <li class="dropdown user user-menu" id="user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{ asset('bower_components/admin-lte/dist/img/iconUser.png') }}"
                                     class="user-image" alt="User Image">
@@ -104,6 +105,12 @@
                 </div>
                 <ul class="sidebar-menu" data-widget="tree">
                     <li>
+                        <a href="{{ route('admin.role.index') }}">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                            <span>{{ trans('admin.role') }}</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#">
                             <i class="fa fa-home"></i> <span>{{ trans('user.home') }}</span>
                         </a>
@@ -152,9 +159,9 @@
             </div>
             <strong><a href="">SUN *</a></strong>
         </footer>
-
         <div class="control-sidebar-bg"></div>
     </div>
+    <script type="text/javascript" src="{{ asset('/js/user_menu.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/sweet-alert.js') }}"></script>
     <script src="{{ asset('bower_components/admin-lte/dist/js/component/general.js') }}">
     </script>
