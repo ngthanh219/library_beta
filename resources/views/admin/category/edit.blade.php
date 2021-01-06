@@ -19,7 +19,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="settings">
-                                <form class="form-horizontal" action="{{ route('category.update', $category->id) }}" method="post"
+                                <form class="form-horizontal" action="{{ route('admin.category.update', $category->id) }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')

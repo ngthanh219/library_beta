@@ -111,7 +111,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('admin.request') }}">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span>{{ trans('admin.role') }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}">
                             <i class="fa fa-home"></i> <span>{{ trans('user.home') }}</span>
                         </a>
                     </li>

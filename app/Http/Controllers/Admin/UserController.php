@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserController extends Controller
 {
@@ -16,9 +17,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->get();
+        if (Auth::user()->can('user.index')) {
+            $users = User::orderBy('id', 'desc')->get();
 
-        return view('admin.user.index', compact('users'));
+            return view('admin.user.index', compact('users'));
+        } else {
+            abort(404);
+        }
     }
 
     /**

@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Request extends Model
 {
     protected $fillable = [
+        'user_id',
         'note',
         'borrowed_date',
         'return_date',
+        'status',
     ];
 
     public function user()
