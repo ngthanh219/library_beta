@@ -33,6 +33,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('api-store-category', 'CategoryController@apiStore')->name('api-store-category');
             Route::get('dashboard', 'HomeController@index')->name('dashboard');
             Route::get('request', 'RequestController@index')->name('request');
+            Route::get('request-detail/{request}', 'RequestController@show')->name('request-detail');
         });
     });
 });
