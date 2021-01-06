@@ -63,6 +63,7 @@
                                             @foreach ($role->permissions as $permission)
                                                 {{ $permission->name }}
                                             @endforeach
+                                            a
                                         </td>
                                     </tr>
                                 </tbody>
