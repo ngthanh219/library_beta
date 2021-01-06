@@ -62,7 +62,7 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
-                                            <td>{{ $user->role_id == 0 ? 'Admin' : 'User' }}</td>
+                                            <td>{{ $user->role_id == 3 ? 'Admin' : 'User' }}</td>
                                             <td>{{ $user->status == 0 ? trans('user.on') : trans('user.off') }}</td>
                                             <td class="td general">
                                                 <a href="{{ route('admin.user.edit', $user->id) }}"><i

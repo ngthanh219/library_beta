@@ -74,7 +74,7 @@ class User extends Authenticatable
     public function hasPermission(Permission $permission)
     {
         $check = !!optional(optional($this->role)->permissions)->contains($permission);
-
+        
         return $check;
     }
 }

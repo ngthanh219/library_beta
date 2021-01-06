@@ -13,4 +13,10 @@ class RequestController extends Controller
 
         return view('admin.request.index', compact('requests'));
     }
+
+    public function show($id) {
+        $request = Request::findOrFail($id)->load('books', 'user');
+        
+        dd($request);
+    }
 }

@@ -28,4 +28,5 @@ return [
     'publisher' => 'Publisher',
     'category' => 'Category',
     'role' => 'Role',
+    'request' => 'Request',
 ];

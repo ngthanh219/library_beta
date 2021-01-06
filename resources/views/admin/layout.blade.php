@@ -104,6 +104,11 @@
                     </div>
                 </div>
                 <ul class="sidebar-menu" data-widget="tree">
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}">
+                            <i class="fa fa-home"></i> <span>{{ trans('user.home') }}</span>
+                        </a>
+                    </li>
                     @can('admin-role')
                         <li>
                             <a href="{{ route('admin.role.index') }}">
@@ -115,12 +120,13 @@
                     <li>
                         <a href="{{ route('admin.request') }}">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span>{{ trans('admin.role') }}</span>
+                            <span>{{ trans('admin.request') }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.dashboard') }}">
-                            <i class="fa fa-home"></i> <span>{{ trans('user.home') }}</span>
+                        <a href="{{ route('admin.book.index') }}">
+                            <i class="fa fa-book"></i>
+                            <span>{{ trans('book.books_manager') }}</span>
                         </a>
                     </li>
                     <li>
@@ -145,12 +151,6 @@
                         <a href="{{ route('admin.category.index') }}">
                             <i class="fa fa-tags"></i>
                             <span>{{ trans('admin.category') }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.book.index') }}">
-                            <i class="fa fa-book"></i>
-                            <span>{{ trans('book.books_manager') }}</span>
                         </a>
                     </li>
                 </ul>

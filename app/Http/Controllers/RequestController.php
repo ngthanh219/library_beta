@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Request;
+use App\Models\User;
 use Auth;
 
 class RequestController extends Controller
@@ -58,6 +59,18 @@ class RequestController extends Controller
 
     public function request(OrderRequest $request)
     {
+
+        $user = User::findOrFail(Auth::id());
+        // dd($user->requests);
+        foreach ($user->requests as $request) {
+            if ($request->status == 0) {
+                return back()->with('mess', trans('request.pending_mess'));
+            }
+            if ($request->status == 4) {
+                return back()->with('mess', trans('request.late_mess'));
+            }
+        }
+        die;
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         $data['status'] = 0;

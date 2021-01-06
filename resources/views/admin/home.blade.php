@@ -3,14 +3,9 @@
 @section('index')
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
-            <h1>{{ trans('user.users_manager') }}</h1>
-            <div class="timeline-footer general">
-                <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn general">
-                    <i class="fa fa-plus-square general"></i> {{ trans('user.add_submit_button') }}
-                </a>
-            </div>
+            <h1>{{ trans('admin.home') }}</h1>
             <ol class="breadcrumb">
-                <li>{{ trans('user.menu') }}</li>
+                <li>{{ trans('admin.home') }}</li>
             </ol>
             @if (session()->has('infoMessage'))
                 <div class="col-md-3 infoMessage">

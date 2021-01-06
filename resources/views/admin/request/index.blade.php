@@ -2,7 +2,7 @@
 @section('index')
     <div class="content-wrapper" id="formContent">
         <section class="content-header">
-            <h1>{{ trans('request.categories_manager') }}</h1>
+            <h1>{{ trans('request.requests_manager') }}</h1>
             <ol class="breadcrumb">
                 <li>{{ trans('request.request') }}</li>
             </ol>
@@ -49,6 +49,7 @@
                                         <th>{{ trans('request.user_name') }}</th>
                                         <th>{{ trans('request.borrowed_date') }}</th>
                                         <th>{{ trans('request.return_date') }}</th>
+                                        <th>{{ trans('request.total_date') }}</th>
                                         <th>{{ trans('request.status') }}</th>
                                         <th>{{ trans('request.actions') }}</th>
                                     </tr>
@@ -73,12 +74,10 @@
                                                 @endif
                                             </td>
                                             <td class="td general">
-                                                <a href=""
-                                                    title="{{ trans('request.accept') }}">
+                                                <a href="{{ route('admin.request-detail', $request->id) }}"
+                                                    title="{{ trans('request.view') }}">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href=""
-                                                    title="{{ trans('request.reject') }}"><i class="fa fa-pencil"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
