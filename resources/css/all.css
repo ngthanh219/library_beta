@@ -32,7 +32,7 @@ i.fa.fa-eye {
 
 .cafe-f {
     margin: 0 auto;
-    background: hsla(0,0%,8%,.85);
+    background: hsla(0, 0%, 8%, .85);
     flex-grow: 1;
     position: absolute;
     top: 0px;
@@ -60,4 +60,8 @@ i.fa.fa-eye {
     padding: 50px;
     width: 1000px;
     margin: 0 auto;
+}
+
+.td-with {
+    width: 200px;
 }

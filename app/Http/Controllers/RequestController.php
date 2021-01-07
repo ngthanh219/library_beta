@@ -59,18 +59,17 @@ class RequestController extends Controller
 
     public function request(OrderRequest $request)
     {
-
         $user = User::findOrFail(Auth::id());
-        // dd($user->requests);
-        foreach ($user->requests as $request) {
-            if ($request->status == 0) {
-                return back()->with('mess', trans('request.pending_mess'));
-            }
-            if ($request->status == 4) {
-                return back()->with('mess', trans('request.late_mess'));
+        if (!$user->requests->isEmpty()) {
+            foreach ($user->requests as $request) {
+                if ($request->status == 0) {
+                    return redirect()->route('home')->with('mess', trans('request.pending_mess'));
+                }
+                if ($request->status == 4) {
+                    return redirect()->route('home')->with('mess', trans('request.late_mess'));
+                }
             }
         }
-        die;
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         $data['status'] = 0;
