@@ -14,7 +14,8 @@
         <div class="book-i-caption">
             <div class="span6 b-img-holder">
                 <span class='zoom' id='ex1'>
-                    <img src="{{ asset('upload/book/'. $book->image) }}" height="219" width="300" id='jack' alt="{{ $book->name }}" />
+                    <img src="{{ asset('upload/book/' . $book->image) }}" height="219" width="300" id='jack'
+                        alt="{{ $book->name }}" />
                 </span>
             </div>
             <div class="span6">
@@ -24,7 +25,7 @@
                 <div class="comm-nav">
                     <ul>
                         <li>
-                            <a href="{{ route('add-cart', $book->id) }}" class="more-btn">+ Add to Cart</a>
+                            <a href="{{ $book->id }}" class="more-btn add-to-cart">+ Add to Cart</a>
                         </li>
                     </ul>
                 </div>
@@ -167,8 +168,8 @@
                     </li>
                 </ul>
                 <a href="#" class="grey-btn left-btn">Write Your Own Review</a>
-            </figure>
+            </figure>fer
         </section>
-
     </section>
+    <script src="{{ asset('js/add_cart.js') }}" defer></script>
 @endsection

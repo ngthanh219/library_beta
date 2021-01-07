@@ -6,11 +6,14 @@
                 <div class="heading-bar">
                     <h2>SHOPPING CART</h2>
                     <span class="h-line"></span>
-                    <a href="#" class="more-btn">proceed to checkout</a>
                 </div>
                 <div class="cart-table-holder">
                     @if (!session('cart'))
-                        <h3>Not</h3>
+                        <tr>
+                            <td colspan="6">
+                                <h4>Không có sản phẩm nào trong giỏ</h4>
+                            </td>
+                        </tr>
                     @else
                         <form action="{{ route('request') }}" method="POST">
                             <table class="cart-table-general" border="0" cellpadding="10">
@@ -24,7 +27,7 @@
                                         <td valign="top"><img src="{{ asset('upload/book/' . $item['image']) }}" /></td>
                                         <td valign="top">{{ $item['name'] }}</td>
                                         <td align="center" valign="top">
-                                            <a href="#"><i class="icon-trash"></i></a>
+                                            <a href="{{ $item['id'] }}" class="remove-item"><i class="icon-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -47,4 +50,5 @@
             </section>
         </section>
     </section>
+    <script src=" {{ asset('js/remove_cart.js') }} " defer></script>
 @endsection

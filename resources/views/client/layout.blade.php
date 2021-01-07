@@ -9,6 +9,8 @@
 
 <body>
     <div class="wrapper">
+        <div class="notification-client">
+        </div>
         @include('client.modules.top_nav_bar')
         @include('client.modules.nav_bar')
         <section id="content-holder" class="container-fluid container">
@@ -37,5 +39,4 @@
     </div>
     @include('client.modules.footer')
 </body>
-
 </html>

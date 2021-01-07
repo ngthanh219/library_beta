@@ -33,28 +33,43 @@ class RequestController extends Controller
                     'name' => $book->name,
                 ],
             ];
+            session()->put('cart', $cart);
+            session()->save();
+
+            return response()->json([
+                'message' => trans('request.add_cart'),
+            ]);
         } else {
             if (isset($cart[$id])) {
-                return back()->with('message', 'Chi duoc 1 lan');
+                return response()->json([
+                    'message' => trans('request.add_only_book'),
+                ]);
             } else {
                 $cart[$id] = [
                     'id' => $id,
                     'image' => $book->image,
                     'name' => $book->name,
                 ];
+                session()->put('cart', $cart);
+                session()->save();
+
+                return response()->json([
+                    'message' => trans('request.add_cart'),
+                ]);
             }
         }
+    }
+
+    public function removeCart($id)
+    {
+        $cart = session()->get('cart');
+        unset($cart[$id]);
         session()->put('cart', $cart);
         session()->save();
 
-        return back()->with('message', 'OK');
-        // if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-        //     echo json_encode([
-        //         'message' => 'Đã cập nhật sản phẩm vào giỏ hàng',
-        //     ]);
-        // } else {
-        //     return back();
-        // }
+        return response()->json([
+            'message' => trans('request.remove_from_cart'),
+        ]);
     }
 
     public function request(OrderRequest $request)

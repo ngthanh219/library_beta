@@ -33,3 +33,17 @@
     position: absolute;
     bottom: -35px;
 }
+
+.notification-client .content-message {
+    position: fixed;
+    background: hsl(120deg 68% 47% / 85%);
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    right: 10px;
+    top: 100px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}

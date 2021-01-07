@@ -29,4 +29,7 @@ return [
     'days' => 'days',
     'pending_mess' => 'You are waiting to review the book so you cannot borrow any more',
     'late_mess' => 'You have not returned the book',
+    'add_cart' => 'Added to cart',
+    'add_only_book' => 'You can only add one book',
+    'remove_from_cart' => 'You removed book'
 ];

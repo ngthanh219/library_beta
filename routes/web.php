@@ -43,4 +43,5 @@ Route::get('category-book/{categoryId}', 'BookController@cateBook')->name('categ
 Route::get('detail/{book}', 'BookController@detail')->name('detail');
 Route::get('cart', 'RequestController@cart')->name('cart');
 Route::get('add-cart/{book}', 'RequestController@addToCart')->name('add-cart');
+Route::get('remove-cart/{book}', 'RequestController@removeCart')->name('remove-cart');
 Route::post('request', 'RequestController@request')->name('request');
