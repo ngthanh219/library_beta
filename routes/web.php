@@ -34,6 +34,8 @@ Route::group(['middleware' => 'admin'], function () {
             Route::get('dashboard', 'HomeController@index')->name('dashboard');
             Route::get('request', 'RequestController@index')->name('request');
             Route::get('request-detail/{request}', 'RequestController@show')->name('request-detail');
+            Route::get('accept/{request}', 'RequestController@accept')->name('accept');
+            Route::get('reject/{request}', 'RequestController@reject')->name('reject');
         });
     });
 });

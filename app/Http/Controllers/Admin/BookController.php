@@ -137,7 +137,7 @@ class BookController extends Controller
         $book->delete();
         session()->flash('infoMessage', trans('book.delete_book_success'));
 
-        return redirect()->route('book.index');
+        return redirect()->route('admin.book.index');
     }
 
     public function search(Request $request)
