@@ -1,8 +1,15 @@
 @extends('client.layout')
 @section('content')
+    @if (session()->has('mess'))
+        <div class="notification-client">
+            <div class="content-message">
+                {{ session()->get('mess') }}
+            </div>
+        </div>
+    @endif
     <section id="content-holder" class="container-fluid container">
         <section class="row-fluid">
-            <section class="span9 cart-holder">
+            <section class="span12 cart-holder">
                 <div class="heading-bar">
                     <h2>SHOPPING CART</h2>
                     <span class="h-line"></span>
@@ -11,7 +18,7 @@
                     @if (!session('cart'))
                         <tr>
                             <td colspan="6">
-                                <h4>Không có sản phẩm nào trong giỏ</h4>
+                                <h4>{{ trans('book.empty_information') }}</h4>
                             </td>
                         </tr>
                     @else
@@ -36,9 +43,14 @@
                                 @csrf
                                 <p>Borrow Date</p>
                                 <input type="date" id="inputDiscount" name="borrowed_date">
+                                @if ($errors->has('borrowed_date'))
+                                    <span class="red">{{ $errors->first('borrowed_date') }}</span>
+                                @endif
                                 <p>Return Date</p>
-                                <br class="clearfix">
                                 <input type="date" id="inputDiscount" name="return_date">
+                                @if ($errors->has('borrowed_date'))
+                                    <span class="red">{{ $errors->first('borrowed_date') }}</span>
+                                @endif
                                 <br class="clearfix">
                                 <textarea name="note"></textarea>
                                 <br class="clearfix">

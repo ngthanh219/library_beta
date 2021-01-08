@@ -25,30 +25,18 @@ class RequestController extends Controller
     {
         $cart = session()->get('cart');
         $book = Book::findOrFail($id);
-        if (empty($cart)) {
-            $cart = [
-                $id => [
-                    'id' => $id,
-                    'image' => $book->image,
-                    'name' => $book->name,
-                ],
-            ];
-            session()->put('cart', $cart);
-            session()->save();
-
+        if ($book->in_stock == 0) {
             return response()->json([
-                'message' => trans('request.add_cart'),
+                'message' => trans('request.out_of_stock'),
             ]);
         } else {
-            if (isset($cart[$id])) {
-                return response()->json([
-                    'message' => trans('request.add_only_book'),
-                ]);
-            } else {
-                $cart[$id] = [
-                    'id' => $id,
-                    'image' => $book->image,
-                    'name' => $book->name,
+            if (empty($cart)) {
+                $cart = [
+                    $id => [
+                        'id' => $id,
+                        'image' => $book->image,
+                        'name' => $book->name,
+                    ],
                 ];
                 session()->put('cart', $cart);
                 session()->save();
@@ -56,6 +44,24 @@ class RequestController extends Controller
                 return response()->json([
                     'message' => trans('request.add_cart'),
                 ]);
+            } else {
+                if (isset($cart[$id])) {
+                    return response()->json([
+                        'message' => trans('request.add_only_book'),
+                    ]);
+                } else {
+                    $cart[$id] = [
+                        'id' => $id,
+                        'image' => $book->image,
+                        'name' => $book->name,
+                    ];
+                    session()->put('cart', $cart);
+                    session()->save();
+
+                    return response()->json([
+                        'message' => trans('request.add_cart'),
+                    ]);
+                }
             }
         }
     }
@@ -78,10 +84,10 @@ class RequestController extends Controller
         if (!$user->requests->isEmpty()) {
             foreach ($user->requests as $request) {
                 if ($request->status == 0) {
-                    return redirect()->route('home')->with('mess', trans('request.pending_mess'));
+                    return redirect()->route('cart')->with('mess', trans('request.pending_mess'));
                 }
                 if ($request->status == 4) {
-                    return redirect()->route('home')->with('mess', trans('request.late_mess'));
+                    return redirect()->route('cart')->with('mess', trans('request.late_mess'));
                 }
             }
         }
@@ -97,6 +103,6 @@ class RequestController extends Controller
         session()->forget('cart');
         session()->save();
 
-        return redirect()->route('home');
+        return redirect()->route('cart')->with('mess', trans('request.success_mess'));
     }
 }

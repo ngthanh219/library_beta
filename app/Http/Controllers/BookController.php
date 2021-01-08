@@ -32,7 +32,7 @@ class BookController extends Controller
     {
         $categories = Category::with('children')->where('parent_id', '0')->get();
         $authors = Author::paginate(config('pagination.limit_author'));
-        $book = Book::findOrFail($id)->load('author', 'categories', 'publisher');
+        $book = Book::findOrFail($id)->load('author', 'categories', 'publisher', 'likes.user');
 
         return view('client.detail_book', compact('categories', 'authors', 'book'));
     }

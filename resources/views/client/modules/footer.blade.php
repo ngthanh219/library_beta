@@ -15,3 +15,4 @@
 <script type="text/javascript" src="{{ asset('bower_components/book-client-lte/js/general.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/book-client-lte/js/cookie.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/book-client-lte/js/colorswitcher.js') }}"></script>
+<script src="{{ asset('js/notification.js') }}"></script>

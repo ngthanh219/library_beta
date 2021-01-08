@@ -5,6 +5,8 @@
     "/js/cate_popup.js": "/js/cate_popup.js",
     "/js/cate_popup_form.js": "/js/cate_popup_form.js",
     "/js/editor.js": "/js/editor.js",
+    "/js/like_book.js": "/js/like_book.js",
+    "/js/notification.js": "/js/notification.js",
     "/js/remove_cart.js": "/js/remove_cart.js",
     "/js/select2.js": "/js/select2.js",
     "/js/sweet-alert.js": "/js/sweet-alert.js",

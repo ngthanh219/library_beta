@@ -5,11 +5,51 @@
             <div class="span6">
                 <h4><strong>{{ $book->name }}</strong> by {{ $book->author->name }}</h4>
             </div>
-            <div class="span6 book-d-nav">
-                <ul>
-                    <li><a href="#">2 Reviews</a></li>
-                </ul>
-            </div>
+            @if (Auth::check())
+                <div class="span6 book-d-nav">
+                    <ul>
+                        <li>
+                            <a class="l-react" href="{{ $book->id }}">
+                                @php
+                                $class = 'reaction-like'
+                                @endphp
+                                @if ($book->likes->isEmpty())
+                                    @php
+                                    $class
+                                    @endphp
+                                @else
+                                    @foreach ($book->likes as $like)
+                                        @if ($like->status == 1 && $like['user']->id == Auth::user()->id)
+                                            @php
+                                            $class .= ' liked'
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                @endif
+                                <span id="reaction-like" class="{{ $class }}">
+                                    <i class="icon-thumbs-up"></i>
+                                    @php
+                                    $index = 0;
+                                    @endphp
+                                    @if ($book->likes->isEmpty())
+                                        {{ $index }}
+                                    @else
+                                        @foreach ($book->likes as $like)
+                                            @if ($like->status == 1)
+                                                @php
+                                                $index++
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                        {{ $index }}
+                                    @endif
+                                    likes
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            @endif
         </article>
         <div class="book-i-caption">
             <div class="span6 b-img-holder">
@@ -40,14 +80,22 @@
             <div class="tab-content">
                 <div id="pane1" class="tab-pane active">
                     @foreach ($book->categories as $category)
-                        <p>{{ $category->name }}</p>
+                        <p><b>{{ $category->name }}</b></p>
                     @endforeach
                 </div>
                 <div id="pane2" class="tab-pane">
-                    <h4>{{ $book->author->name }}</h4>
+                    <h4> <b>{{ trans('author.name') }}</b>: {{ $book->author->name }}</h4>
+                    <h4> <b>{{ trans('author.date_born') }}</b>: {{ $book->author->date_of_born }}</h4>
+                    <h4> <b>{{ trans('author.date_death') }}:</b> {{ $book->author->date_of_death }}</h4>
+                    <h4> <b>{{ trans('author.description') }}:</b>
+                        {{ $book->author->description == '' ? trans('author.unknow') : $book->author->description }}
+                    </h4>
                 </div>
                 <div id="pane3" class="tab-pane">
-                    <h4>{{ $book->publisher->name }}</h4>
+                    <h4> <b>{{ trans('publisher.name') }}</b>: {{ $book->publisher->name }}</h4>
+                    <h4> <b>{{ trans('publisher.email') }}</b>: {{ $book->publisher->email }}</h4>
+                    <h4> <b>{{ trans('publisher.phone') }}</b>: {{ $book->publisher->phone }}</h4>
+                    <h4> <b>{{ trans('publisher.address') }}</b>: {{ $book->publisher->address }}</h4>
                 </div>
             </div>
         </div>
@@ -57,51 +105,6 @@
                 <span class="h-line"></span>
             </div>
             <div class="slider6">
-                <div class="slide">
-                    <a href="book-detail.html"><img src="images/image05.jpg" alt="" class="pro-img" /></a>
-                    <span class="title"><a href="book-detail.html">A Walk Across The Sun</a></span>
-                    <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star" /></span>
-                    <div class="cart-price">
-                        <a class="cart-btn2" href="cart.html">Add to Cart</a>
-                        <span class="price">$129.90</span>
-                    </div>
-                </div>
-                <div class="slide">
-                    <a href="book-detail.html"><img src="images/image05.jpg" alt="" class="pro-img" /></a>
-                    <span class="title"><a href="book-detail.html">A Walk Across The Sun</a></span>
-                    <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star" /></span>
-                    <div class="cart-price">
-                        <a class="cart-btn2" href="cart.html">Add to Cart</a>
-                        <span class="price">$129.90</span>
-                    </div>
-                </div>
-                <div class="slide">
-                    <a href="book-detail.html"><img src="images/image05.jpg" alt="" class="pro-img" /></a>
-                    <span class="title"><a href="book-detail.html">A Walk Across The Sun</a></span>
-                    <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star" /></span>
-                    <div class="cart-price">
-                        <a class="cart-btn2" href="cart.html">Add to Cart</a>
-                        <span class="price">$129.90</span>
-                    </div>
-                </div>
-                <div class="slide">
-                    <a href="book-detail.html"><img src="images/image05.jpg" alt="" class="pro-img" /></a>
-                    <span class="title"><a href="book-detail.html">A Walk Across The Sun</a></span>
-                    <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star" /></span>
-                    <div class="cart-price">
-                        <a class="cart-btn2" href="cart.html">Add to Cart</a>
-                        <span class="price">$129.90</span>
-                    </div>
-                </div>
-                <div class="slide">
-                    <a href="book-detail.html"><img src="images/image05.jpg" alt="" class="pro-img" /></a>
-                    <span class="title"><a href="book-detail.html">A Walk Across The Sun</a></span>
-                    <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star" /></span>
-                    <div class="cart-price">
-                        <a class="cart-btn2" href="cart.html">Add to Cart</a>
-                        <span class="price">$129.90</span>
-                    </div>
-                </div>
                 <div class="slide">
                     <a href="book-detail.html"><img src="images/image05.jpg" alt="" class="pro-img" /></a>
                     <span class="title"><a href="book-detail.html">A Walk Across The Sun</a></span>
@@ -172,4 +175,5 @@
         </section>
     </section>
     <script src="{{ asset('js/add_cart.js') }}" defer></script>
+    <script src="{{ asset('js/like_book.js') }}" defer></script>
 @endsection

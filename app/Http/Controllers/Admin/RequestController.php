@@ -23,12 +23,17 @@ class RequestController extends Controller
 
     public function accept($id)
     {
-        $request = Request::findOrFail($id);
+        $request = Request::with('books')->findOrFail($id);
 
         if ($request->status == 0 || $request->status == 2) {
             $result = $request->update([
                 'status' => 1,
             ]);
+            foreach ($request->books as $book) {
+                $book->update([
+                    'in_stock' => $book->in_stock - 1
+                ]);
+            }
             if ($result) {
                 return redirect()->route('admin.request')->with('infoMessage',
                     trans('message.request_accept_success'));

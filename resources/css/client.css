@@ -36,7 +36,7 @@
 
 .notification-client .content-message {
     position: fixed;
-    background: hsl(120deg 68% 47% / 85%);
+    background: hsl(0deg 56% 49% / 85%);
     padding: 20px;
     width: 200px;
     text-align: center;
@@ -46,4 +46,21 @@
     color: white;
     font-size: 16px;
     font-weight: bold;
+}
+
+.red {
+    color: red
+}
+
+.unl-react,
+.l-react {
+    cursor: pointer;
+}
+
+.liked {
+    color: blue;
+}
+
+.unliked {
+    color: black;
 }

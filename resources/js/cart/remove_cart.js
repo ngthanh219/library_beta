@@ -14,8 +14,7 @@ $('.remove-item').click(function (e) {
         },
         success: function (res) {
             var html = '<div class="content-message">' + res.message + '</div>';
-            var htmlEmpty = '<tr><td colspan="6"><h4>Không có sản phẩm nào trong giỏ</h4></td></tr>';
-
+            var htmlEmpty = '<tr><td colspan="6"><h4>Not information</h4></td></tr>';
             parent.remove();
             $('.notification-client').append(html);
             $('.content-message').delay(2500).slideUp();
