@@ -79,6 +79,10 @@
                                                     <span class="label label-primary">{{ trans('request.accept') }}</span>
                                                 @elseif ($request->status == 2)
                                                     <span class="label label-danger">{{ trans('request.reject') }}</span>
+                                                @elseif ($request->status == 3)
+                                                    <span class="label label-info">{{ trans('request.borrowing') }}</span>
+                                                @elseif ($request->status == 4)
+                                                    <span class="label label-success">{{ trans('request.return') }}</span>
                                                 @endif
                                             </td>
                                             <td class="td general">

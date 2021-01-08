@@ -1,4 +1,4 @@
-$('.add-to-cart').click(function (e) {
+$('.add-to-cart').click(function(e) {
     e.preventDefault();
 
     var route = window.location.origin;
@@ -11,18 +11,18 @@ $('.add-to-cart').click(function (e) {
         data: {
             id: id
         },
-        success: function (res) {
+        success: function(res) {
             var html = '<div class="content-message">' + res.message + '</div>';
             $('.notification-client').append(html);
             $('.content-message').delay(2500).slideUp();
-            setTimeout(function () {
+            setTimeout(function() {
                 $('.notification-client').empty();
             }, 60000)
         },
-        error: function (XHR, status, error) {
+        error: function(XHR, status, error) {
             console.log(error);
         },
-        complete: function (res) {
+        complete: function(res) {
             // alert(data);
         }
     })

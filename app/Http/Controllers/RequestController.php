@@ -63,6 +63,7 @@ class RequestController extends Controller
                     ]);
                 }
             }
+
         }
     }
 
@@ -80,24 +81,40 @@ class RequestController extends Controller
 
     public function request(OrderRequest $request)
     {
-        $user = User::findOrFail(Auth::id());
+        $user = User::with(['requests.books', 'requests' => function ($query) {
+            $query->where('status', '<>', 4)->where('status', '<>', 2)->withCount('books');
+        }])->findOrFail(Auth::id());
+        $totalBook = 0;
         if (!$user->requests->isEmpty()) {
+            // $cart = session()->get('cart');
             foreach ($user->requests as $request) {
-                if ($request->status == 0) {
-                    return redirect()->route('cart')->with('mess', trans('request.pending_mess'));
-                }
-                if ($request->status == 4) {
-                    return redirect()->route('cart')->with('mess', trans('request.late_mess'));
-                }
+                // Đoạn code này dùng để xử lý 1 quyển sách chỉ được mượn 1 lần trong tất cả các request
+                // foreach ($cart as $item) {
+                //     $book = Book::findOrFail($item['id']);
+                //     if ($request->books->contains($book)) {
+                //         dd('Ban da muon quyen sach nay roi');
+                //         //return  redirect()->route('cart')->with('mess', trans('request.fail_mess'));
+                //     }
+                // }
+                $totalBook += $request->books_count;
+            }
+            if ($totalBook == 5) {
+                return redirect()->route('cart')->with('mess', trans('request.fail_mess'));
             }
         }
-        $data = $request->all();
-        $data['user_id'] = Auth::user()->id;
-        $data['status'] = 0;
-        $order = Request::create($data);
+        $req = new Request;
+        $order = $req->create([
+            'user_id' => Auth::id(),
+            'status' => 0,
+            'borrowed_date' => $request->borrowed_date,
+            'return_date' => $request->return_date,
+        ]);
         $cart = session()->get('cart');
         foreach ($cart as $item) {
             $book = Book::findOrFail($item['id']);
+            $book->update([
+                'in_stock' => $book->in_stock - 1,
+            ]);
             $order->books()->attach($book);
         }
         session()->forget('cart');

@@ -31,6 +31,10 @@ return [
     'late_mess' => 'You have not returned the book',
     'success_mess' => 'Request successfully',
     'out_of_stock' => 'Out of books',
+    'undo' => 'Undo',
+    'borrowed_book' => 'Borrowed Book',
+    'borrowing' => 'Borrowing',
+    'return_book' => 'Return Book',
     'add_cart' => 'Added to cart',
     'add_only_book' => 'You can only add one book',
     'remove_from_cart' => 'You removed book'

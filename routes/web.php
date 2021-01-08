@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('request-detail/{request}', 'RequestController@show')->name('request-detail');
         Route::get('accept/{request}', 'RequestController@accept')->name('accept');
         Route::get('reject/{request}', 'RequestController@reject')->name('reject');
+        Route::get('undo/{request}', 'RequestController@undo')->name('undo');
+        Route::get('borrowed-book/{request}', 'RequestController@borrowedBook')->name('borrowed-book');
+        Route::get('return-book/{request}', 'RequestController@returnBook')->name('return-book');
     });
     Route::post('request', 'RequestController@request')->name('request');
 });
