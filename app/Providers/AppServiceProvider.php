@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Models\Category;
 use App\Models\Author;
+use App\Models\Book;
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,11 +31,15 @@ class AppServiceProvider extends ServiceProvider
             'client.detail_book',
             'client.category',
             'client.category_book',
-            'client.home'
+            'client.home',
         ], function ($view) {
             $view->with([
                 'categories' => Category::with('children')->where('parent_id', '0')->get(),
-                'authors' => Author::paginate(config('pagination.limit_author')),
+                'authors' => Author::take(config('pagination.limit_author'))->get(),
+                'newBooks' => Book::with('author')->orderBy('id', 'DESC')->take(6)->get(),
+                'likeBooks' => Book::withCount(['likes' => function (Builder $query) {
+                    $query->where('status', 0);
+                }])->having('likes_count', '<>', 0)->orderBy('likes_count', 'desc')->take(6)->get(),
             ]);
         });
     }

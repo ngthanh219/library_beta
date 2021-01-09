@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -12,7 +13,7 @@ class BookController extends Controller
     {
         $page = $request->page;
         $books = Book::with('categories')->orderBy('id', 'desc')->where('status', '0')->paginate(config('pagination.limit'));
-
+        
         return view('client.home', compact('books', 'page'));
     }
 
