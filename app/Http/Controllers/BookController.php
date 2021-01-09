@@ -2,38 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Author;
 use App\Models\Book;
+use App\Models\Category;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
     public function index(Request $request)
     {
         $page = $request->page;
-        $categories = Category::with('children')->where('parent_id', '0')->get();
-        $authors = Author::paginate(config('pagination.limit_author'));
         $books = Book::with('categories')->orderBy('id', 'desc')->where('status', '0')->paginate(config('pagination.limit'));
 
-        return view('client.home', compact('categories', 'authors', 'books', 'page'));
+        return view('client.home', compact('books', 'page'));
     }
 
     public function cateBook($categoryId)
     {
-        $categories = Category::with('children')->where('parent_id', '0')->get();
-        $authors = Author::paginate(config('pagination.limit_author'));
         $category = Category::findOrFail($categoryId)->load('books');
-
-        return view('client.category_book', compact('categories', 'authors', 'category'));
+        
+        return view('client.category_book', compact('category'));
     }
 
     public function detail($id)
     {
-        $categories = Category::with('children')->where('parent_id', '0')->get();
-        $authors = Author::paginate(config('pagination.limit_author'));
-        $book = Book::findOrFail($id)->load('author', 'categories', 'publisher', 'likes.user');
+        $book = Book::findOrFail($id)->load('publisher','categories', 'likes.user');
 
-        return view('client.detail_book', compact('categories', 'authors', 'book'));
+        return view('client.detail_book', compact('book'));
     }
 }
