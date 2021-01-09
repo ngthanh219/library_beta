@@ -19,14 +19,15 @@ class BookController extends Controller
     public function cateBook($categoryId)
     {
         $category = Category::findOrFail($categoryId)->load('books');
-        
+
         return view('client.category_book', compact('category'));
     }
 
     public function detail($id)
     {
-        $book = Book::findOrFail($id)->load('publisher','categories', 'likes.user');
+        $book = Book::findOrFail($id)->load('publisher', 'categories.books', 'likes.user');
+        $relatedBooks = Book::findOrFail($id)->load('categories.books')->inRandomOrder()->limit(4)->get();
 
-        return view('client.detail_book', compact('book'));
+        return view('client.detail_book', compact('book', 'relatedBooks'));
     }
 }

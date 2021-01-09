@@ -105,15 +105,12 @@
                 <span class="h-line"></span>
             </div>
             <div class="slider6">
-                <div class="slide">
-                    <a href="book-detail.html"><img src="images/image05.jpg" alt="" class="pro-img" /></a>
-                    <span class="title"><a href="book-detail.html">A Walk Across The Sun</a></span>
-                    <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star" /></span>
-                    <div class="cart-price">
-                        <a class="cart-btn2" href="cart.html">Add to Cart</a>
-                        <span class="price">$129.90</span>
+                @foreach ($relatedBooks as $releted)
+                    <div class="slide">
+                    <a href="book-detail.html"><img src="{{ $book->image ? asset('upload/book' . $book->image) : ''}}" alt="" class="pro-img" /></a>
+                        <span class="title"><a href="book-detail.html">{{ $releted->name }}</a></span>
                     </div>
-                </div>
+                @endforeach
             </div>
         </section>
         <section class="reviews-section">
@@ -123,13 +120,7 @@
                 </div>
                 <ul class="review-list">
                     <li>
-                        <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star" /></span>
-                        <em class="">The Kite Runner</em>
-                        <p>“ Suspendisse tortor lacus, suscipit eget pharetra sed, ornare sed elit. Curabitur mollis, justo
-                            sit amet fermentum ” Review by Bookshoppe’</p>
-                    </li>
-                    <li>
-                        <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star" /></span>
+                        
                         <em class="">The Kite Runner</em>
                         <p>“ Suspendisse tortor lacus, suscipit eget pharetra sed, ornare sed elit. Curabitur mollis, justo
                             sit amet fermentum ” Review by Bookshoppe’</p>
