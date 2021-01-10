@@ -16,4 +16,5 @@
 <link rel="stylesheet" name="skins" href="{{ asset('bower_components/book-client-lte/css/default.css') }}"
     type="text/css" media="all">
 <link href="{{ asset('bower_components/book-client-lte/css/second-general.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ asset('bower_components/jstree/dist/themes/default/style.min.css') }}" />
 <link href="{{ asset('css/client.css') }}" rel="stylesheet" type="text/css" />

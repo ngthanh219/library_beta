@@ -1,3 +1,6 @@
+<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jstree/dist/jstree.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('js/jstree.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/book-client-lte/js/lib.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/book-client-lte/js/modernizr.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/book-client-lte/js/easing.js') }}"></script>

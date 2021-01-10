@@ -25,4 +25,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/cart/add_cart.js', 'public/js/add_cart.js')
     .js('resources/js/cart/remove_cart.js', 'public/js/remove_cart.js')
     .js('resources/js/notification.js', 'public/js/notification.js')
-    .js('resources/js/reaction/like_book.js', 'public/js/like_book.js');
+    .js('resources/js/reaction/like_book.js', 'public/js/like_book.js')
+    .js('resources/js/jstree.js', 'public/js/jstree.js');
