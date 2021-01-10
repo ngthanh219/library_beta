@@ -9,9 +9,16 @@ use App\Models\Category;
 use App\Models\Request;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 
 class RequestController extends Controller
 {
+    public function index()
+    {
+        $user = User::with('requests')->findOrFail(Auth::id());
+        dd($user);
+    }
+
     public function cart()
     {
         $categories = Category::with('children')->where('parent_id', '0')->get();
@@ -101,6 +108,12 @@ class RequestController extends Controller
             if ($totalBook == 5) {
                 return redirect()->route('cart')->with('mess', trans('request.fail_mess'));
             }
+        }
+        $borrowed_date = Carbon::parse($request->borrowed_date);
+        $return_date = Carbon::parse($request->return_date);
+        $total_date = $return_date->diffinDays($borrowed_date);
+        if ($total_date > 30) {
+            return redirect()->back()->withInput()->with('mess', trans('request.fail_mess'));
         }
         $req = new Request;
         $order = $req->create([

@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('return-book/{request}', 'RequestController@returnBook')->name('return-book');
     });
     Route::post('request', 'RequestController@request')->name('request');
+    Route::get('request', 'RequestController@index')->name('request');
 });
 
 Route::get('/', 'BookController@index')->name('home');

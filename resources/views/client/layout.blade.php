@@ -14,10 +14,6 @@
         @include('client.modules.nav_bar')
         <section id="content-holder" class="container-fluid container">
             <section class="row-fluid">
-                <div class="heading-bar">
-                    <h2>Grid View</h2>
-                    <span class="h-line"></span>
-                </div>
                 <section class="span9 first wapper">
                     @yield('content')
                 </section>

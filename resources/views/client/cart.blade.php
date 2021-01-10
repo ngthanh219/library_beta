@@ -42,17 +42,17 @@
                             <div class="cart-option-box">
                                 @csrf
                                 <p>Borrow Date</p>
-                                <input type="date" id="inputDiscount" name="borrowed_date">
+                            <input type="date" id="inputDiscount" name="borrowed_date" value="{{ old('borrowed_date') }}">
                                 @if ($errors->has('borrowed_date'))
                                     <span class="red">{{ $errors->first('borrowed_date') }}</span>
                                 @endif
                                 <p>Return Date</p>
-                                <input type="date" id="inputDiscount" name="return_date">
+                                <input type="date" id="inputDiscount" name="return_date" value="{{ old('return_date') }}">
                                 @if ($errors->has('borrowed_date'))
                                     <span class="red">{{ $errors->first('borrowed_date') }}</span>
                                 @endif
                                 <br class="clearfix">
-                                <textarea name="note"></textarea>
+                                <textarea name="note">{{ old('note') }}</textarea>
                                 <br class="clearfix">
                                 <button type="submit" class="more-btn">Request</a>
                             </div>

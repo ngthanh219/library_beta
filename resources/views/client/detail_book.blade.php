@@ -107,7 +107,8 @@
             <div class="slider6">
                 @foreach ($relatedBooks as $releted)
                     <div class="slide">
-                    <a href="book-detail.html"><img src="{{ $book->image ? asset('upload/book' . $book->image) : ''}}" alt="" class="pro-img" /></a>
+                        <a href="book-detail.html"><img src="{{ $book->image ? asset('upload/book' . $book->image) : '' }}"
+                                alt="" class="pro-img" /></a>
                         <span class="title"><a href="book-detail.html">{{ $releted->name }}</a></span>
                     </div>
                 @endforeach
@@ -120,7 +121,7 @@
                 </div>
                 <ul class="review-list">
                     <li>
-                        
+
                         <em class="">The Kite Runner</em>
                         <p>“ Suspendisse tortor lacus, suscipit eget pharetra sed, ornare sed elit. Curabitur mollis, justo
                             sit amet fermentum ” Review by Bookshoppe’</p>
