@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
             'client.category',
             'client.category_book',
             'client.home',
+            'client.modules.trending'
         ], function ($view) {
             $view->with([
                 'categories' => Category::with('children')->where('parent_id', '0')->get(),
