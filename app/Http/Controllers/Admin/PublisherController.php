@@ -147,7 +147,7 @@ class PublisherController extends Controller
     public function export()
     {
         $item = new PublishersExport;
-        if ($item->collection()) {
+        if ($item->view()) {
             return Excel::download(new PublishersExport, 'publishers.xlsx');
         }
 

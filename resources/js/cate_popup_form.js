@@ -24,6 +24,7 @@ $('#form').submit(function(e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
+            'parent_name': parent_name,
             'child_name': child_name,
         },
         success: function(res) {

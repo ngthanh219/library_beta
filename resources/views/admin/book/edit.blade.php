@@ -30,8 +30,8 @@
                                                         <option value="0" selected>{{ trans('book.visible') }}</option>
                                                         <option value="1">{{ trans('book.hidden') }}</option>
                                                     @else
-                                                        <option value="0" {{ trans('book.visible') }}</option>
-                                                        <option value="1" selected>>{{ trans('book.hidden') }}</option>
+                                                        <option value="0"> {{ trans('book.visible') }}</option>
+                                                        <option value="1" selected>{{ trans('book.hidden') }}</option>
                                                     @endif
                                                 </select>
                                                 @if ($errors->has('status'))

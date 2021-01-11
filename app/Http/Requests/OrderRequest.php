@@ -24,7 +24,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'borrowed_date' => 'required|date',
+            'borrowed_date' => 'required|date|after_or_equal:today',
             'return_date' => 'required|date|after_or_equal:borrowed_date',
         ];
     }

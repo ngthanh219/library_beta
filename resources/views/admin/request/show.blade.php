@@ -35,12 +35,22 @@
                                         class="btn btn-success"><b>{{ trans('request.accept') }}</b></a>
                                     <a href="{{ route('admin.reject', $request->id) }}"
                                         class="btn btn-danger"><b>{{ trans('request.reject') }}</b></a>
-                                @elseif($request->status == 1)
-                                    <a href="{{ route('admin.reject', $request->id) }}"
-                                        class="btn btn-danger"><b>{{ trans('request.reject') }}</b></a>
                                 @elseif($request->status == 2)
-                                    <a href="{{ route('admin.accept', $request->id) }}"
-                                        class="btn btn-success"><b>{{ trans('request.accept') }}</b></a>
+                                    <a href="{{ route('admin.undo', $request->id) }}"
+                                        class="btn btn-info"><b>{{ trans('request.undo') }}</b></a>
+                                @elseif($request->status == 1)
+                                    <a href="{{ route('admin.borrowed-book', $request->id) }}"
+                                        class="btn btn-info"><b>{{ trans('request.borrowed_book') }}</b></a>
+                                    <a href="{{ route('admin.undo', $request->id) }}"
+                                        class="btn btn-info"><b>{{ trans('request.undo') }}</b></a>
+                                @elseif($request->status == 3)
+                                    <a href="{{ route('admin.return-book', $request->id) }}"
+                                        class="btn btn-danger"><b>{{ trans('request.return_book') }}</b></a>
+                                    <a href="{{ route('admin.undo', $request->id) }}"
+                                        class="btn btn-info"><b>{{ trans('request.undo') }}</b></a>
+                                @elseif($request->status == 4)
+                                    <a href="{{ route('admin.undo', $request->id) }}"
+                                        class="btn btn-info"><b>{{ trans('request.undo') }}</b></a>
                                 @endif
                             </div>
                         </div>
@@ -69,15 +79,21 @@
                                             </h4>
                                             <h4>
                                                 Tình trạng: <b>
-                                                    @if ($request->satus == 0) 
+                                                    @if ($request->status == 0)
                                                         <span
                                                             class="label label-warning">{{ trans('request.pending') }}</span>
-                                                    @elseif($request->satus == 1)
+                                                    @elseif ($request->status == 1)
                                                         <span
-                                                            class="label label-warning">{{ trans('request.accept') }}</span>
-                                                    @elseif($request->satus == 2)
+                                                            class="label label-primary">{{ trans('request.accept') }}</span>
+                                                    @elseif ($request->status == 2)
                                                         <span
-                                                            class="label label-warning">{{ trans('request.reject') }}</span>
+                                                            class="label label-danger">{{ trans('request.reject') }}</span>
+                                                    @elseif ($request->status == 3)
+                                                        <span
+                                                            class="label label-info">{{ trans('request.borrowing') }}</span>
+                                                    @elseif ($request->status == 4)
+                                                        <span
+                                                            class="label label-success">{{ trans('request.return') }}</span>
                                                     @endif
                                                 </b>
                                             </h4>
@@ -100,7 +116,7 @@
                                                             <tr>
                                                                 <td>
                                                                     @if ($book->image != '')
-                                                                        <img class="profile-user-img img-responsive img-circle"
+                                                                        <img class="profile-user-img img-responsive"
                                                                             src="{{ asset('upload/book/' . $book->image) }}"
                                                                             title="{{ trans('book.book') }}: {{ $book->name }}">
                                                                     @else

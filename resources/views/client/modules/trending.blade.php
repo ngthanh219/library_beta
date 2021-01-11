@@ -24,6 +24,44 @@
     <section class="container">
         <section class="row-fluid">
             <figure class="span4">
+                <h4>New Books</h4>
+                <ul class="f2-img-list">
+                    @foreach ($newBooks as $newBook)
+                        <li>
+                            <div class="left"><a href="book-detail.html"><img
+                                        src="{{ $newBook->image ? asset('upload/book/' . $newBook->image) : asset('bower_components/book-client-lte/images/image35.jpg') }}"
+                                        alt="" /></a>
+                            </div>
+                            <div class="right">
+                                <strong class="title">
+                                    <a href="book-detail.html">{{ $newBook->name }}</a>
+                                </strong>
+                                <span class="by-author">by {{ $newBook->author->name }}</span>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </figure>
+            <figure class="span4">
+                <h4>Top Like Books</h4>
+                <ul class="f2-img-list">
+                    @foreach ($likeBooks as $likeBook)
+                        <li>
+                            <div class="left"><a href="book-detail.html"><img
+                                        src="{{ asset('bower_components/book-client-lte/images/image35.jpg') }}"
+                                        alt="" /></a>
+                            </div>
+                            <div class="right">
+                                <strong class="title">
+                                    <a href="book-detail.html">{{ $likeBook->name }}</a>
+                                </strong>
+                                <span class="by-author">Like: {{ $likeBook->likes_count }}</span>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </figure>
+            <figure class="span4">
                 <h4>Top Rated Books</h4>
                 <ul class="f2-img-list">
                     <li>

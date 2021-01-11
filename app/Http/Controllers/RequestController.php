@@ -9,9 +9,16 @@ use App\Models\Category;
 use App\Models\Request;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 
 class RequestController extends Controller
 {
+    public function index()
+    {
+        $user = User::with('requests')->findOrFail(Auth::id());
+        dd($user);
+    }
+
     public function cart()
     {
         $categories = Category::with('children')->where('parent_id', '0')->get();
@@ -80,24 +87,43 @@ class RequestController extends Controller
 
     public function request(OrderRequest $request)
     {
-        $user = User::findOrFail(Auth::id());
+        $user = User::with(['requests.books', 'requests' => function ($query) {
+            $query->where('status', '<>', 4)->where('status', '<>', 2)->withCount('books');
+        }])->findOrFail(Auth::id());
+        $totalBook = 0;
+        $cart = session()->get('cart');
         if (!$user->requests->isEmpty()) {
             foreach ($user->requests as $request) {
-                if ($request->status == 0) {
-                    return redirect()->route('cart')->with('mess', trans('request.pending_mess'));
+                foreach ($cart as $item) {
+                    $book = Book::findOrFail($item['id']);
+                    if ($request->books->contains($book)) {
+                        return redirect()->route('cart')->with('mess', trans('Ban da muon quyen sach nay roi'));
+                    }
                 }
-                if ($request->status == 4) {
-                    return redirect()->route('cart')->with('mess', trans('request.late_mess'));
-                }
+                $totalBook += $request->books_count;
+            }
+            if ($totalBook == 5) {
+                return redirect()->route('cart')->with('mess', trans('request.fail_mess'));
             }
         }
-        $data = $request->all();
-        $data['user_id'] = Auth::user()->id;
-        $data['status'] = 0;
-        $order = Request::create($data);
-        $cart = session()->get('cart');
+        $borrowed_date = Carbon::parse($request->borrowed_date);
+        $return_date = Carbon::parse($request->return_date);
+        $total_date = $return_date->diffinDays($borrowed_date);
+        if ($total_date > 30) {
+            return redirect()->back()->withInput()->with('mess', trans('request.fail_mess'));
+        }
+        $req = new Request;
+        $order = $req->create([
+            'user_id' => Auth::id(),
+            'status' => 0,
+            'borrowed_date' => $request->borrowed_date,
+            'return_date' => $request->return_date,
+        ]);
         foreach ($cart as $item) {
             $book = Book::findOrFail($item['id']);
+            $book->update([
+                'in_stock' => $book->in_stock - 1,
+            ]);
             $order->books()->attach($book);
         }
         session()->forget('cart');
