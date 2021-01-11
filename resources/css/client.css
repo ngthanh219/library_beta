@@ -11,22 +11,44 @@
     text-align: center;
 }
 
-.box-wapper {
-    display: none;
-    line-height: 30px;
-    background: #f3ecec;
-    border-radius: 5px;
+li.hover-wapper {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
 }
 
-.hover-wapper:hover .box-wapper {
-    display: flex;
-    flex-direction: column;
-    z-index: 99999;
+.box-wapper {
+    visibility: hidden;
+    position: absolute;
+    top: -10px;
+    right: -142px;
+    line-height: 40px;
+    background: #150000 !important;
+    border-radius: 5px;
+    z-index: 9999;
+    width: 140px;
+}
+
+li.hover-wapper:hover {
+    background: #ece4e4;
+}
+
+li.hover-wapper:hover .box-wapper {
+    visibility: visible;
+}
+
+.box-wapper.active-menu {
+    visibility: visible;
+}
+
+.box-wapper.active-menu.unactived {
+    visibility: hidden !important;
 }
 
 .box-wapper .item-wapper .child {
     margin-left: 10px;
     display: block;
+    color: white;
 }
 
 .blog-footer.wapper {
@@ -63,4 +85,47 @@
 
 .unliked {
     color: black;
+}
+
+.overlay.current {
+    height: 23px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: 99999;
+}
+
+th, td {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+
+.col-first-table {
+    width: 6% !important;
+}
+
+.box-rule {
+    display: flex;
+}
+
+.box-rule .cart-option-box {
+    margin-right: 32px;
+}
+
+.box-rule .rule {
+    width: 73%;
+}
+
+.box-rule .rule .high-l-rule {
+    color: red;
+    font-size: 18px;
+}
+
+.textarea {
+    margin: 0px 0px 10px;
+    height: 144px;
+    width: 342px;
+    resize: none;
 }

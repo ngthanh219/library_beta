@@ -27,7 +27,35 @@
                                     @endforeach
                                 @endif
                                 <span id="reaction-like" class="{{ $class }}">
-                                    <i class="icon-thumbs-up"></i>
+                                    <i class="icon-heart"></i>
+                                    @php
+                                    $index = 0;
+                                    @endphp
+                                    @if ($book->likes->isEmpty())
+                                        {{ $index }}
+                                    @else
+                                        @foreach ($book->likes as $like)
+                                            @if ($like->status == 1)
+                                                @php
+                                                $index++
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                        {{ $index }}
+                                    @endif
+                                    likes
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <div class="span6 book-d-nav">
+                    <ul>
+                        <li>
+                            <a class="l-react">
+                                <span>
+                                    <i class="icon-heart"></i>
                                     @php
                                     $index = 0;
                                     @endphp

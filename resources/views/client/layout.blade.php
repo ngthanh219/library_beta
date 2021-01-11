@@ -39,6 +39,7 @@
         </section>
         @include('client.modules.trending')
     </div>
+    @yield('script')
     @include('client.modules.footer')
 </body>
 

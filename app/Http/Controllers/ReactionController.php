@@ -12,6 +12,7 @@ class ReactionController extends Controller
     {
         $user = Auth::user();
         $likes = Like::where('user_id', $user->id)->where('book_id', $bookId)->first();
+        $book_like = Like::where('book_id', $bookId)->get();
 
         if (!$likes) {
             $item = Like::create([
@@ -21,7 +22,7 @@ class ReactionController extends Controller
             ]);
 
             return response()->json([
-                'count' => $item->count(),
+                'count' => $book_like->count(),
                 'like' => true,
             ]);
         } else {
@@ -33,7 +34,7 @@ class ReactionController extends Controller
                 ]);
 
                 return response()->json([
-                    'count' => $likes->count(),
+                    'count' => $book_like->count(),
                     'like' => false,
                 ]);
             } else if ($likes->status == null) {
@@ -44,11 +45,10 @@ class ReactionController extends Controller
                 ]);
 
                 return response()->json([
-                    'count' => $likes->count(),
+                    'count' => $book_like->count() - 1,
                     'like' => true,
                 ]);
             }
         }
-
     }
 }

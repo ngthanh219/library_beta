@@ -17,3 +17,4 @@
     type="text/css" media="all">
 <link href="{{ asset('bower_components/book-client-lte/css/second-general.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('css/client.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('bower_components/admin-lte/bower_components/jquery/dist/jquery.min.js') }}"></script>

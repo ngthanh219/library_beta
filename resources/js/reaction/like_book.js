@@ -12,16 +12,16 @@ $('.l-react').click(function (e) {
         },
         success: function (res) {
             var count = res.count;
-            console.log(count);
             if (res.like === true) {
+                count += 1;
                 $('.reaction-like').addClass('liked');
                 $('#reaction-like').text('');
-                $('#reaction-like').append('<i class="icon-thumbs-up"></i> ' + count + ' likes');
+                $('#reaction-like').append('<i class="icon-heart"></i> ' + count + ' likes');
             } else {
-                count-=1;
+                count -= 1;
                 $('.reaction-like').removeClass('liked');
                 $('#reaction-like').text('');
-                $('#reaction-like').append('<i class="icon-thumbs-up"></i> ' + count + ' likes');
+                $('#reaction-like').append('<i class="icon-heart"></i> ' + count + ' likes');
             }
         },
         error: function (XHR, status, error) {

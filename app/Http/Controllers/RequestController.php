@@ -15,7 +15,7 @@ class RequestController extends Controller
     public function cart()
     {
         $categories = Category::with('children')->where('parent_id', '0')->get();
-        $authors = Author::paginate(5);
+        $authors = Author::get()->take(config('pagination.limit_author'));
         $cart = session()->get('cart');
 
         return view('client.cart', compact('categories', 'authors', 'cart'));
