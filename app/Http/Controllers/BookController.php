@@ -25,9 +25,10 @@ class BookController extends Controller
 
     public function detail($id)
     {
-        $book = Book::findOrFail($id)->load('publisher', 'categories.books', 'likes.user');
-        $relatedBooks = Book::findOrFail($id)->load('categories.books')->inRandomOrder()->limit(4)->get();
+        $book = Book::findOrFail($id)->load(['publisher', 'likes.user' , 'categories.books' => function ($query) {
+            $query->inRandomOrder()->get()->take(config('pagination.limit'));
+        }]);
 
-        return view('client.detail_book', compact('book', 'relatedBooks'));
+        return view('client.detail_book', compact('book'));
     }
 }
