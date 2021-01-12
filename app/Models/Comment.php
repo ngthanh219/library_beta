@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $fillable = [
-        'image',
-        'name',
+        'user_id',
+        'book_id',
         'comment',
     ];
 

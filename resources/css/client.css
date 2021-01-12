@@ -131,6 +131,30 @@ td {
     resize: none;
 }
 
+.bold-text {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.event-none {
+    pointer-events: none;
+    cursor: auto !important;
+    background: #c5c4ff !important;
+}
+
+.btn-bt {
+    background: #706de2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 1450px) {
     .box-wapper {
         right: 0px !important;

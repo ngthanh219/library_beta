@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('borrowed-book/{request}', 'RequestController@borrowedBook')->name('borrowed-book');
         Route::get('return-book/{request}', 'RequestController@returnBook')->name('return-book');
     });
+    Route::resource('comments', 'CommentController');
     Route::post('request', 'RequestController@request')->name('request');
     Route::get('request', 'RequestController@index')->name('request');
 });
