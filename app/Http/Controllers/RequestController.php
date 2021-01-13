@@ -15,8 +15,18 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $user = User::with('requests')->findOrFail(Auth::id());
-        dd($user);
+        $user = User::with(['requests' => function($query){
+            $query->orderBy('id', 'desc');
+        }])->findOrFail(Auth::id());
+
+        return view('client.list_request', compact('user'));
+    }
+
+    public function show($id)
+    {   
+        $request = Request::with('user')->findOrFail($id);
+        
+        return view('client.detail_request', compact('request'));
     }
 
     public function cart()
@@ -90,17 +100,20 @@ class RequestController extends Controller
         $user = User::with(['requests.books', 'requests' => function ($query) {
             $query->where('status', '<>', 4)->where('status', '<>', 2)->withCount('books');
         }])->findOrFail(Auth::id());
+        if ($user->status == 2) {
+            return redirect()->route('cart')->with('mess', 'Bạn đã quá số lần cho phép quá hạn xin vui lòng trả sách cho lần mượn tiếp theo');
+        }
         $totalBook = 0;
         $cart = session()->get('cart');
         if (!$user->requests->isEmpty()) {
-            foreach ($user->requests as $request) {
+            foreach ($user->requests as $req) {
                 foreach ($cart as $item) {
                     $book = Book::findOrFail($item['id']);
-                    if ($request->books->contains($book)) {
+                    if ($req->books->contains($book)) {
                         return redirect()->route('cart')->with('mess', trans('Ban da muon quyen sach nay roi'));
                     }
                 }
-                $totalBook += $request->books_count;
+                $totalBook += $req->books_count;
             }
             if ($totalBook == 5) {
                 return redirect()->route('cart')->with('mess', trans('request.fail_mess'));
@@ -113,6 +126,7 @@ class RequestController extends Controller
             return redirect()->back()->withInput()->with('mess', trans('request.fail_mess'));
         }
         $req = new Request;
+
         $order = $req->create([
             'user_id' => Auth::id(),
             'status' => 0,

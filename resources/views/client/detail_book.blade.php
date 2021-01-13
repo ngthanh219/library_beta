@@ -264,7 +264,9 @@
                                     $('#comment').val('');
                                 },
                                 error: function(XHR, status, error) {
-                                    console.log(error);
+                                    if(error == 'Unauthorized') {
+                                        window.location.href = 'login',
+                                    }
                                 },
                                 complete: function(res) {
 

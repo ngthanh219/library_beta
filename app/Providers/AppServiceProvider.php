@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
                 'authors' => Author::take(config('pagination.limit_author'))->get(),
                 'newBooks' => Book::with('author')->orderBy('id', 'DESC')->take(6)->get(),
                 'likeBooks' => Book::withCount(['likes' => function (Builder $query) {
-                    $query->where('status', 0);
+                    $query->where('status', 1);
                 }])->having('likes_count', '<>', 0)->orderBy('likes_count', 'desc')->take(6)->get(),
             ]);
         });

@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('comments', 'CommentController');
     Route::post('request', 'RequestController@request')->name('request');
     Route::get('request', 'RequestController@index')->name('request');
+    Route::get('request-detail/{request}', 'RequestController@show')->name('request-detail');
 });
 
 Route::get('/', 'BookController@index')->name('home');

@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
                 'phone' => '0334736187',
                 'role_id' => 3,
                 'times' => 0,
-                'status' => 0,
+                'status' => 3,
             ],
             [
                 'name' => 'Bùi Quang Anh',
@@ -32,7 +32,7 @@ class UserTableSeeder extends Seeder
                 'phone' => 0,
                 'role_id' => 3,
                 'times' => 0,
-                'status' => 0,
+                'status' => 3,
             ],
             [
                 'name' => 'client',

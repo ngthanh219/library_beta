@@ -1,4 +1,4 @@
-$('.l-react').click(function (e) {
+$('.l-react').click(function(e) {
     e.preventDefault();
     var id = $(this).attr('href');
     var route = window.location.origin;
@@ -10,7 +10,7 @@ $('.l-react').click(function (e) {
         data: {
             id: id
         },
-        success: function (res) {
+        success: function(res) {
             var count = res.count;
             if (res.like === true) {
                 count += 1;
@@ -24,10 +24,13 @@ $('.l-react').click(function (e) {
                 $('#reaction-like').append('<i class="icon-heart"></i> ' + count + ' likes');
             }
         },
-        error: function (XHR, status, error) {
+        error: function(XHR, status, error) {
             console.log(error);
+            if (error) {
+                window.location.href = route + '/login';
+            }
         },
-        complete: function (res) {
+        complete: function(res) {
 
         }
     })

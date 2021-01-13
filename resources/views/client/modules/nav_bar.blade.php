@@ -7,7 +7,7 @@
             </section>
             <section class="span8">
                 <ul class="top-nav2">
-                    <li><a href="checkout.html">My Account</a></li>
+                    <li><a href="{{ route('request') }}">List Request</a></li>
                     <li><a href="{{ route('cart') }}">My Cart</a></li>
                 </ul>
                 <div class="search-bar">
@@ -36,8 +36,8 @@
                                 <li><a href="#">Blog</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown"> <a class="dropdown-toggle" href="#"
-                                data-toggle="dropdown">Movies & TV <b class="caret"></b> </a>
+                        <li class="dropdown"> <a class="dropdown-toggle" href="#" data-toggle="dropdown">Movies & TV <b
+                                    class="caret"></b> </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Submenu Detail Column 1</a></li>
                             </ul>

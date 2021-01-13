@@ -69,9 +69,20 @@
                                             $finish_time = \Carbon\Carbon::parse($request->return_date);
                                             $total_date = $finish_time->diffinDays($start_time);
                                             @endphp
-                                            <td>
-                                                <b>{{ $total_date }} {{ trans('request.days') }}</b>
-                                            </td>
+                                            @if ($request->status == 5)
+                                                <td>
+                                                    <b>{{ trans('request.too_late') }} {{ $total_date }}
+                                                        {{ trans('request.days') }}</b>
+                                                </td>
+                                            @elseif($total_date == 0)
+                                                <td>
+                                                    <b>{{ trans('request.last_date') }}</b>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <b>{{ $total_date }} {{ trans('request.days') }}</b>
+                                                </td>
+                                            @endif
                                             <td>
                                                 @if ($request->status == 0)
                                                     <span class="label label-warning">{{ trans('request.pending') }}</span>
@@ -83,6 +94,8 @@
                                                     <span class="label label-info">{{ trans('request.borrowing') }}</span>
                                                 @elseif ($request->status == 4)
                                                     <span class="label label-success">{{ trans('request.return') }}</span>
+                                                @elseif ($request->status == 5)
+                                                    <span class="label label-danger">{{ trans('request.too_late') }}</span>
                                                 @endif
                                             </td>
                                             <td class="td general">
