@@ -13,19 +13,18 @@ $('.l-react').click(function (e) {
         success: function (res) {
             var count = res.count;
             if (res.like === true) {
-                count += 1;
                 $('.reaction-like').addClass('liked');
-                $('#reaction-like').text('');
-                $('#reaction-like').append('<i class="icon-heart"></i> ' + count + ' likes');
             } else {
                 count -= 1;
                 $('.reaction-like').removeClass('liked');
-                $('#reaction-like').text('');
-                $('#reaction-like').append('<i class="icon-heart"></i> ' + count + ' likes');
             }
+            $('#reaction-like').text('');
+            $('#reaction-like').append(`<i class="icon-heart"></i> ${count} likes`);
         },
         error: function (XHR, status, error) {
-            console.log(error);
+            if (error == 'Unauthorized') {
+                window.location.href = route + '/login';
+            }
         },
         complete: function (res) {
 

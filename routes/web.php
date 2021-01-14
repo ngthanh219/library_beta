@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('comments', 'CommentController');
     Route::post('request', 'RequestController@request')->name('request');
     Route::get('request', 'RequestController@index')->name('request');
+    Route::get('vote', 'ReactionController@vote')->name('vote');
+    Route::get('react/{book}', 'ReactionController@react')->name('react');
 });
 
 Route::get('/', 'BookController@index')->name('home');
@@ -50,4 +52,3 @@ Route::get('detail/{book}', 'BookController@detail')->name('detail');
 Route::get('cart', 'RequestController@cart')->name('cart');
 Route::get('add-cart/{book}', 'RequestController@addToCart')->name('add-cart');
 Route::get('remove-cart/{book}', 'RequestController@removeCart')->name('remove-cart');
-Route::get('react/{book}', 'ReactionController@react')->name('react');
