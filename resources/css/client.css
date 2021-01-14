@@ -205,6 +205,24 @@ i.vote-current {
     opacity: 1;
 }
 
+::-webkit-scrollbar {
+    height: 0px;
+    width: 8px;
+    border-radius: 4px;
+    background: transparent;
+    transition: all .3s ease;
+}
+
+::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 4px;
+}
+
+.review-list {
+    height: 250px;
+    overflow: scroll;
+}
+
 @media only screen and (max-width: 1450px) {
     .box-wapper {
         right: 0px !important;

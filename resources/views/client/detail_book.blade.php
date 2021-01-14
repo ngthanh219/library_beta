@@ -105,8 +105,23 @@
                             <div class="rating-list">
                                 <div class="rating-box">
                                     @foreach ($votes as $vote)
-                                        <input type="radio" name="vote" class="vote" id="start{{ $vote }}" value="{{ $vote }}">
-                                        <label for="start{{ $vote }}"></label>
+                                        @if ($book->rates->isEmpty())
+                                            <input type="radio" name="vote" class="vote" id="start{{ $vote }}"
+                                            value="{{ $vote }}">
+                                            <label for="start{{ $vote }}"></label>
+                                        @else
+                                            @foreach ($book->rates as $item)
+                                                @if ($item->vote == $vote)
+                                                    <input type="radio" name="vote" class="vote" id="start{{ $vote }}"
+                                                        value="{{ $vote }}" checked>
+                                                    <label for="start{{ $vote }}"></label>
+                                                @else
+                                                    <input type="radio" name="vote" class="vote" id="start{{ $vote }}"
+                                                    value="{{ $vote }}">
+                                                    <label for="start{{ $vote }}"></label>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -123,102 +138,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            $('.vote').click(function () {
-                var val = $(this).attr('value');
-
-
-            })
-
-            var voteInContructor = '';
-            $('.high-l-star').click(function(e) {
-                e.preventDefault();
-
-                var vote = $(this).attr('href');
-                var child = $(this).children()[0].id;
-                var classVoted = '';
-                voteInContructor = vote;
-
-                switch (child) {
-                    case 'star-empty-1':
-                        $('#' + child).attr('class', 'icon-star');
-                        $('#vote-current-' + vote).css('display', 'block');
-                        break;
-
-                    case 'star-empty-2':
-                        $('#star-empty-1').attr('class', 'icon-star');
-                        $('#' + child).attr('class', 'icon-star');
-                        $('#vote-current-1').css('display', 'block');
-                        $('#vote-current-' + vote).css('display', 'block');
-                        break;
-
-                    case 'star-empty-3':
-                        $('#star-empty-1').attr('class', 'icon-star');
-                        $('#star-empty-2').attr('class', 'icon-star');
-                        $('#' + child).attr('class', 'icon-star');
-                        $('#vote-current-1').css('display', 'block');
-                        $('#vote-current-2').css('display', 'block');
-                        $('#vote-current-' + vote).css('display', 'block');
-                        break;
-
-                    case 'star-empty-4':
-                        $('#star-empty-1').attr('class', 'icon-star');
-                        $('#star-empty-2').attr('class', 'icon-star');
-                        $('#star-empty-3').attr('class', 'icon-star');
-                        $('#' + child).attr('class', 'icon-star');
-                        $('#vote-current-1').css('display', 'block');
-                        $('#vote-current-2').css('display', 'block');
-                        $('#vote-current-3').css('display', 'block');
-                        $('#vote-current-' + vote).css('display', 'block');
-                        break;
-
-                    case 'star-empty-5':
-                        $('#star-empty-1').attr('class', 'icon-star');
-                        $('#star-empty-2').attr('class', 'icon-star');
-                        $('#star-empty-3').attr('class', 'icon-star');
-                        $('#star-empty-4').attr('class', 'icon-star');
-                        $('#' + child).attr('class', 'icon-star');
-                        $('#vote-current-1').css('display', 'block');
-                        $('#vote-current-2').css('display', 'block');
-                        $('#vote-current-3').css('display', 'block');
-                        $('#vote-current-4').css('display', 'block');
-                        $('#vote-current-' + vote).css('display', 'block');
-                        break;
-                    default:
-                        $('#' + child).attr('class', 'icon-star');
-                        break;
-                }
-            })
-
-            $('.voted-1').click(function(e) {
-                $('#star-empty-2').attr('class', 'icon-star-empty');
-                $('#star-empty-3').attr('class', 'icon-star-empty');
-                $('#star-empty-4').attr('class', 'icon-star-empty');
-                $('#star-empty-5').attr('class', 'icon-star-empty');
-                $('#vote-current-2').css('display', 'none');
-                $('#vote-current-3').css('display', 'none');
-                $('#vote-current-4').css('display', 'none');
-                $('#vote-current-5').css('display', 'none');
-            })
-            $('.voted-2').click(function(e) {
-                $('#star-empty-3').attr('class', 'icon-star-empty');
-                $('#star-empty-4').attr('class', 'icon-star-empty');
-                $('#star-empty-5').attr('class', 'icon-star-empty');
-                $('#vote-current-3').css('display', 'none');
-                $('#vote-current-4').css('display', 'none');
-                $('#vote-current-5').css('display', 'none');
-            })
-            $('.voted-3').click(function(e) {
-                $('#star-empty-4').attr('class', 'icon-star-empty');
-                $('#star-empty-5').attr('class', 'icon-star-empty');
-                $('#vote-current-4').css('display', 'none');
-                $('#vote-current-5').css('display', 'none');
-            })
-            $('.voted-4').click(function(e) {
-                $('#star-empty-5').attr('class', 'icon-star-empty');
-                $('#vote-current-5').css('display', 'none');
-            })
-        </script>
         <div class="tabbable">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#pane1" data-toggle="tab">{{ trans('category.category') }}</a></li>
@@ -256,8 +175,9 @@
                 @foreach ($book->categories as $category)
                     @foreach ($category->books as $related)
                         `<div class="slide">
-                            <a href="book-detail.html"><img src="{{ $related->image ? asset('upload/book' . $related->image) : '' }}"
-                                    alt="" class="pro-img" /></a>
+                            <a href="book-detail.html"><img
+                                    src="{{ $related->image ? asset('upload/book' . $related->image) : '' }}" alt=""
+                                    class="pro-img" /></a>
                             <span class="title"><a href="book-detail.html">{{ $related->name }}</a></span>
                         </div>
                     @endforeach
@@ -269,7 +189,7 @@
                 <div class="r-title-bar">
                     <strong>Customer Reviews</strong>
                 </div>
-                <ul class="review-list">
+                <ul class="review-list" id="cmt-data">
                     @foreach ($book->comments as $cmt)
                         <li>
                             <em class="bold-text">{{ $cmt->user->name }}</em>
@@ -278,6 +198,16 @@
                     @endforeach
                 </ul>
             </figure>
+            <script>
+                $('#cmt-data').scroll(function () {
+                    var scrollCurrent = $('#cmt-data').scrollTop();
+                    var heightCurrent = $('#cmt-data').height();
+                    var tb = heightCurrent - scrollCurrent;
+                    if(heightCurrent - scrollCurrent == 145) {
+
+                    }
+                });
+            </script>
             <figure class="right-sec">
                 <ul class="review-f-list">
                     <li>
@@ -287,87 +217,12 @@
                             <button type="submit" id="btn-cmt" class="btn-bt event-none">Comment</button>
                         </form>
                     </li>
-                    <script>
-                        var url = window.location.origin;
-
-                        $("#comment").on('input', function(e) {
-                            if (this.value.length >= 1) {
-                                $('#btn-cmt').removeClass('event-none');
-                            } else {
-                                $('#btn-cmt').addClass('event-none');
-                            }
-                        });
-
-                        $('.cmt-form').submit(function(e) {
-                            e.preventDefault();
-                            var book_id = $('#book_id').text();
-                            var comment = $('#comment').val();
-                            console.log(comment)
-                            $.ajax({
-                                url: url + '/comments',
-                                type: 'POST',
-                                dataType: 'json',
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                },
-                                data: {
-                                    book_id: book_id,
-                                    comment: comment
-                                },
-                                success: function(res) {
-                                    var name = res.user_name;
-                                    var cmt = res.comment;
-                                    var content = '';
-                                    content += '<li>';
-                                    content += '<em class="bold-text">' + name + '</em>';
-                                    content += '<p>' + comment + '</p>';
-                                    content += '</li>';
-
-                                    $('.review-list').append(content);
-                                    $('#comment').val('');
-                                },
-                                error: function(XHR, status, error) {
-                                    console.log(error);
-                                },
-                                complete: function(res) {
-
-                                }
-                            });
-                        })
-
-                    </script>
-                    <li>
-                        <label>How do you rate this book? *</label>
-                        <div class="rating-list">
-                            <div class="rating-box">
-                                <label class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                    Star 1
-                                </label>
-                            </div>
-                            <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Star 2
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                Star 3
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Star 4
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Star 5
-                            </label>
-                        </div>
-                    </li>
                 </ul>
-                <a href="#" class="grey-btn left-btn">Write Your Own Review</a>
-            </figure>fer
+            </figure>
         </section>
     </section>
     <script src="{{ asset('js/add_cart.js') }}" defer></script>
     <script src="{{ asset('js/like_book.js') }}" defer></script>
+    <script src="{{ asset('js/comment_book.js') }}" defer></script>
+    <script src="{{ asset('js/vote_book.js') }}" defer></script>
 @endsection

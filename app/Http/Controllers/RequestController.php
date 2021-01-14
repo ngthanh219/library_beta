@@ -97,7 +97,9 @@ class RequestController extends Controller
                 foreach ($cart as $item) {
                     $book = Book::findOrFail($item['id']);
                     if ($request->books->contains($book)) {
-                        return redirect()->route('cart')->with('mess', trans('Ban da muon quyen sach nay roi'));
+                        return redirect()->route('cart')->with('mess', trans('You have exceeded the overdue allowances, please return the book for the next loan'));
+                        // Ban da muon quyen sach nay roi
+                        // Ban da muon quyen sach nay roi
                     }
                 }
                 $totalBook += $request->books_count;
