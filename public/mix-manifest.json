@@ -4,6 +4,7 @@
     "/css/app.css": "/css/app.css",
     "/js/cate_popup.js": "/js/cate_popup.js",
     "/js/cate_popup_form.js": "/js/cate_popup_form.js",
+    "/js/comment_book.js": "/js/comment_book.js",
     "/js/editor.js": "/js/editor.js",
     "/js/like_book.js": "/js/like_book.js",
     "/js/notification.js": "/js/notification.js",
@@ -11,6 +12,7 @@
     "/js/select2.js": "/js/select2.js",
     "/js/sweet-alert.js": "/js/sweet-alert.js",
     "/js/user_menu.js": "/js/user_menu.js",
+    "/js/vote_book.js": "/js/vote_book.js",
     "/css/all.css": "/css/all.css",
     "/css/client.css": "/css/client.css"
 }

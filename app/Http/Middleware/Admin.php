@@ -21,7 +21,7 @@ class Admin
     {
         if (Auth::user()) {
             $user = User::findOrFail(Auth::id())->load(['requests' => function ($query) {
-                $query->where('status', '<>', 2)->where('status', '<>', 4)->where('status', '<>', 5);
+                $query->where('status', '<>', 2)->where('status', '<>', 4)->where('status', '<>', 5)->where('status', '<>', 6   );
             }]);
             $status = $user->status;
             foreach ($user->requests as $item) {
@@ -29,8 +29,19 @@ class Admin
                 $today = Carbon::today();
                 $date = $returnDate->lt($today);
                 if ($date) {
-                    if ($status == 0 || $status == 1) {
-                        dd('Yess');
+                    if ($item->status == 0 || $item->status == 1) {
+                        $req = Request::findOrFail($item->id)->load('user');
+                        foreach ($req->books as $book) {
+                            $book->update([
+                                'in_stock' => $book->in_stock + 1,
+                            ]);
+                        }
+                        $user->update([
+                            'status' => $status + 1,
+                        ]);
+                        $req->update([
+                            'status' => 6,
+                        ]);
                     } else {
                         $req = Request::findOrFail($item->id)->load('user');
                         $user->update([

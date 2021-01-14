@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use Auth;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -25,9 +26,20 @@ class BookController extends Controller
 
     public function detail($id)
     {
-        $book = Book::findOrFail($id)->load('publisher', 'categories.books', 'likes.user', 'comments.user');
-        $relatedBooks = Book::findOrFail($id)->load('categories.books')->inRandomOrder()->limit(4)->get();
+        $book = Book::findOrFail($id)->load([
+            'publisher',
+            'likes.user',
+            'categories.books' => function ($query) {
+                $query->inRandomOrder()->get()->take(config('pagination.limit'));
+            },
+            'rates' => function ($query) {
+                $query->where('user_id', Auth::id());
+            },
+            'comments' => function ($query) {
+                $query->paginate(5);
+            },
+        ]);
 
-        return view('client.detail_book', compact('book', 'relatedBooks'));
+        return view('client.detail_book', compact('book'));
     }
 }

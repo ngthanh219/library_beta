@@ -98,64 +98,46 @@
                         </li>
                     </ul>
                 </div>
+                <div class="comm-nav">
+                    <ul>
+                        <li>
+                            <label>How do you rate this book? *</label>
+                            <div class="rating-list">
+                                <div class="rating-box">
+                                    @foreach ($votes as $vote)
+                                        @if ($book->rates->isEmpty())
+                                            <input type="radio" name="vote" class="vote" id="start{{ $vote }}"
+                                            value="{{ $vote }}">
+                                            <label for="start{{ $vote }}"></label>
+                                        @else
+                                            @foreach ($book->rates as $item)
+                                                @if ($item->vote == $vote)
+                                                    <input type="radio" name="vote" class="vote" id="start{{ $vote }}"
+                                                        value="{{ $vote }}" checked>
+                                                    <label for="start{{ $vote }}"></label>
+                                                @else
+                                                    <input type="radio" name="vote" class="vote" id="start{{ $vote }}"
+                                                    value="{{ $vote }}">
+                                                    <label for="start{{ $vote }}"></label>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div class="comm-nav star-book" id="star-book">
-                    {{-- <a class="high-l-star" id="hi-start" date-key="12"><i
-                            class="icon-star-empty" id="star-empty" data-key="123"></i></a> --}}
-                    {{-- <a class="high-l-star">
-                        <i class="icon-star"></i>
-                    </a>
-                    <a class="high-l-star">
-                        <i class="icon-star-empty"></i>
-                    </a> --}}
+                    {{-- @foreach ($votes as $vote)
+                        <a href="{{ $vote }}" class="high-l-star {{ $vote }}" id="hi-start" date-key="{{ $vote }}">
+                            <i class="icon-star-empty" id="star-empty-{{ $vote }}"></i>
+                            <i class="vote-current voted-{{ $vote }}" id="vote-current-{{ $vote }}"></i>
+                        </a>
+                    @endforeach --}}
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function() {
-                var starEmpty = '';
-                var star = '';
-                var book_id = $('#book_id').text();
-                var i;
-                for (i = 1; i <= 5; i++) {
-                    starEmpty += '<a class="high-l-star ' + i + '">';
-                    starEmpty += '<i class="icon-star-empty" id="rec-star-' + i + '" data-key=' + i + '></i>';
-                    starEmpty += '</a>';
-                }
-
-                $('#star-book').append(starEmpty);
-
-                $('.high-l-star.1').click(function() {
-                    var child = $('.high-l-star.1').children()[0].id;
-                    $('#' + child).attr('class', 'icon-star');
-                })
-
-                $('.high-l-star.2').click(function() {
-                    var child = $('.high-l-star.2').children()[0].id;
-                    $('#' + child).attr('class', 'icon-star');
-                })
-
-                $('.high-l-star.3').click(function() {
-                    var child = $('.high-l-star.3').children()[0].id;
-                    $('#' + child).attr('class', 'icon-star');
-                })
-
-                $('.high-l-star.3').click(function() {
-                    var child = $('.high-l-star.3').children()[0].id;
-                    $('#' + child).attr('class', 'icon-star');
-                })
-
-                $('.high-l-star.4').click(function() {
-                    var child = $('.high-l-star.4').children()[0].id;
-                    $('#' + child).attr('class', 'icon-star');
-                })
-
-                $('.high-l-star.5').click(function() {
-                    var child = $('.high-l-star.5').children()[0].id;
-                    $('#' + child).attr('class', 'icon-star');
-                })
-            });
-
-        </script>
         <div class="tabbable">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#pane1" data-toggle="tab">{{ trans('category.category') }}</a></li>
@@ -190,14 +172,15 @@
                 <span class="h-line"></span>
             </div>
             <div class="slider6">
-                @foreach ($relatedBooks as $releted)
-                    <div class="slide">
-                        <a href="{{ route('detail', $releted->id) }}">
-                            <img src="{{ $releted->image ? asset('upload/book/' . $releted->image) : '' }}" alt=""
-                                class="pro-img" height="219" width="300" id='jack' alt="{{ $releted->name }}" />
-                        </a>
-                        <span class="title"><a href="book-detail.html">{{ $releted->name }}</a></span>
-                    </div>
+                @foreach ($book->categories as $category)
+                    @foreach ($category->books as $related)
+                        `<div class="slide">
+                            <a href="book-detail.html"><img
+                                    src="{{ $related->image ? asset('upload/book' . $related->image) : '' }}" alt=""
+                                    class="pro-img" /></a>
+                            <span class="title"><a href="book-detail.html">{{ $related->name }}</a></span>
+                        </div>
+                    @endforeach
                 @endforeach
             </div>
         </section>
@@ -206,7 +189,7 @@
                 <div class="r-title-bar">
                     <strong>Customer Reviews</strong>
                 </div>
-                <ul class="review-list">
+                <ul class="review-list" id="cmt-data">
                     @foreach ($book->comments as $cmt)
                         <li>
                             <em class="bold-text">{{ $cmt->user->name }}</em>
@@ -215,6 +198,16 @@
                     @endforeach
                 </ul>
             </figure>
+            <script>
+                $('#cmt-data').scroll(function () {
+                    var scrollCurrent = $('#cmt-data').scrollTop();
+                    var heightCurrent = $('#cmt-data').height();
+                    var tb = heightCurrent - scrollCurrent;
+                    if(heightCurrent - scrollCurrent == 145) {
+
+                    }
+                });
+            </script>
             <figure class="right-sec">
                 <ul class="review-f-list">
                     <li>
@@ -224,89 +217,12 @@
                             <button type="submit" id="btn-cmt" class="btn-bt event-none">Comment</button>
                         </form>
                     </li>
-                    <script>
-                        var url = window.location.origin;
-
-                        $("#comment").on('input', function(e) {
-                            if (this.value.length >= 1) {
-                                $('#btn-cmt').removeClass('event-none');
-                            } else {
-                                $('#btn-cmt').addClass('event-none');
-                            }
-                        });
-
-                        $('.cmt-form').submit(function(e) {
-                            e.preventDefault();
-                            var book_id = $('#book_id').text();
-                            var comment = $('#comment').val();
-                            console.log(comment)
-                            $.ajax({
-                                url: url + '/comments',
-                                type: 'POST',
-                                dataType: 'json',
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                },
-                                data: {
-                                    book_id: book_id,
-                                    comment: comment
-                                },
-                                success: function(res) {
-                                    var name = res.user_name;
-                                    var cmt = res.comment;
-                                    var content = '';
-                                    content += '<li>';
-                                    content += '<em class="bold-text">' + name + '</em>';
-                                    content += '<p>' + comment + '</p>';
-                                    content += '</li>';
-
-                                    $('.review-list').append(content);
-                                    $('#comment').val('');
-                                },
-                                error: function(XHR, status, error) {
-                                    if(error == 'Unauthorized') {
-                                        window.location.href = 'login',
-                                    }
-                                },
-                                complete: function(res) {
-
-                                }
-                            });
-                        })
-
-                    </script>
-                    <li>
-                        <label>How do you rate this book? *</label>
-                        <div class="rating-list">
-                            <div class="rating-box">
-                                <label class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                    Star 1
-                                </label>
-                            </div>
-                            <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Star 2
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                Star 3
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Star 4
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Star 5
-                            </label>
-                        </div>
-                    </li>
                 </ul>
-                <a href="#" class="grey-btn left-btn">Write Your Own Review</a>
             </figure>
         </section>
     </section>
     <script src="{{ asset('js/add_cart.js') }}" defer></script>
     <script src="{{ asset('js/like_book.js') }}" defer></script>
+    <script src="{{ asset('js/comment_book.js') }}" defer></script>
+    <script src="{{ asset('js/vote_book.js') }}" defer></script>
 @endsection

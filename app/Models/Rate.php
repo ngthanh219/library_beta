@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Rate extends Model
 {
     protected $fillable = [
+        'user_id',
+        'book_id',
         'vote',
     ];
 

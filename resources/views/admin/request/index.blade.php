@@ -74,6 +74,10 @@
                                                     <b>{{ trans('request.too_late') }} {{ $total_date }}
                                                         {{ trans('request.days') }}</b>
                                                 </td>
+                                            @elseif($request->status == 6)
+                                                <td>
+                                                    <b>Bạn đã quá hạn nhưng chưa lấy sách</b>
+                                                </td>
                                             @elseif($total_date == 0)
                                                 <td>
                                                     <b>{{ trans('request.last_date') }}</b>
@@ -96,6 +100,8 @@
                                                     <span class="label label-success">{{ trans('request.return') }}</span>
                                                 @elseif ($request->status == 5)
                                                     <span class="label label-danger">{{ trans('request.too_late') }}</span>
+                                                @elseif ($request->status == 6)
+                                                    <span class="label label-danger">Bạn đã quá hạn nhưng chưa lấy sách</span>
                                                 @endif
                                             </td>
                                             <td class="td general">

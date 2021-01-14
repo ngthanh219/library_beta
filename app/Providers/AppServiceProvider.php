@@ -27,13 +27,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $votes = [
+            '5' => 5,
+            '4' => 4,
+            '3' => 3,
+            '2' => 2,
+            '1' => 1,
+        ];
+
         view()->composer([
             'client.detail_book',
             'client.category',
             'client.category_book',
             'client.home',
             'client.modules.trending'
-        ], function ($view) {
+        ], function ($view) use ($votes) {
             $view->with([
                 'categories' => Category::with('children')->where('parent_id', '0')->get(),
                 'authors' => Author::take(config('pagination.limit_author'))->get(),
@@ -41,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
                 'likeBooks' => Book::withCount(['likes' => function (Builder $query) {
                     $query->where('status', 1);
                 }])->having('likes_count', '<>', 0)->orderBy('likes_count', 'desc')->take(6)->get(),
+                'votes' => $votes,
             ]);
         });
     }

@@ -48,7 +48,7 @@
                                         class="btn btn-danger"><b>{{ trans('request.return_book') }}</b></a>
                                     <a href="{{ route('admin.undo', $request->id) }}"
                                         class="btn btn-info"><b>{{ trans('request.undo') }}</b></a>
-                                @elseif($request->status == 4)
+                                @elseif($request->status == 4)  
                                     <a href="{{ route('admin.undo', $request->id) }}"
                                         class="btn btn-info"><b>{{ trans('request.undo') }}</b></a>
                                 @endif
@@ -94,6 +94,12 @@
                                                     @elseif ($request->status == 4)
                                                         <span
                                                             class="label label-success">{{ trans('request.return') }}</span>
+                                                    @elseif ($request->status == 5)
+                                                        <span
+                                                            class="label label-success">Quá hạn chưa trả sách</span>
+                                                    @elseif ($request->status == 6)
+                                                        <span
+                                                            class="label label-success">Quá hạn nhưng chưa lấy sách</span>
                                                     @endif
                                                 </b>
                                             </h4>
