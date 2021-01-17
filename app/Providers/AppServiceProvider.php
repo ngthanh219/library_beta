@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);// Xoa Mem`
+
         $votes = [
             '5' => 5,
             '4' => 4,
@@ -40,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
             'client.category',
             'client.category_book',
             'client.home',
-            'client.modules.trending'
+            'client.modules.trending',
         ], function ($view) use ($votes) {
             $view->with([
                 'categories' => Category::with('children')->where('parent_id', '0')->get(),

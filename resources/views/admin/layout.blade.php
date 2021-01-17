@@ -153,6 +153,12 @@
                             <span>{{ trans('admin.category') }}</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.book-delete') }}">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                            <span>{{ trans('book.book') }}</span>
+                        </a>
+                    </li>
                 </ul>
             </section>
         </aside>

@@ -26,7 +26,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('author', 'AuthorController');
         Route::resource('publisher', 'PublisherController');
         Route::resource('category', 'CategoryController');
+        Route::delete('hard-delete/{book}', 'BookController@hardDelete')->name('hard-delete');
         Route::resource('book', 'BookController');
+        Route::get('book-delete', 'BookController@listDeleteBook')->name('book-delete');
+        Route::get('book-restore/{book}', 'BookController@restoreBook')->name('book-restore');
         Route::get('search-book', 'BookController@search')->name('search-book');
         Route::get('category-popup', 'BookController@catePopup')->name('category-popup');
         Route::post('api-store-category', 'CategoryController@apiStore')->name('api-store-category');
